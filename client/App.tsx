@@ -1,16 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { StyleSheet, View } from 'react-native';
+import Home from './screens/Home';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello World!</Text>
-      <Button title="Click Me" onPress={() =>{console.log('Pressed')}}/>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <View style={styles.container}>
+        <Home/>
+        <StatusBar style="auto" />
+      </View>
+    </QueryClientProvider>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
