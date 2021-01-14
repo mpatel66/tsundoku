@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, FlatList, SafeAreaView, StyleSheet } from 'react-native';
-import Book from '../Book';
-import DiscoverBook from './DiscoverBook';
+import { FlatList, StyleSheet, View } from 'react-native';
+import Book from '../../Book';
+import DiscoverBook from '../presentational/DiscoverBook';
+import { Layout } from '@ui-kitten/components';
 
 
 interface Props {
@@ -17,7 +18,8 @@ const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
   }
 
   return(
-    <SafeAreaView>
+    <Layout level='2'>
+    {books && 
     <FlatList
       data={books}
       keyExtractor={item => item.id}
@@ -25,10 +27,11 @@ const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
       numColumns={2}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
-      onEndReached={getNextPage}
+      onEndReached={books.length < 70 ? getNextPage: () =>{}}
       onEndReachedThreshold={0.5}
     />
-    </SafeAreaView>
+    }
+    </Layout>
     
   )
 }

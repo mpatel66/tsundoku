@@ -20,9 +20,10 @@ export default class Book {
     this.pageCount = pageCount;
     this.title = title;
   }
-  // industryIdentifiers[0].identifier
+
   static parseBook( data: any ): Book {
     const { volumeInfo } = data;
+    const authors = volumeInfo.authors === undefined ? ['Anon.'] : volumeInfo.authors;
     const  industryIdentifiers = volumeInfo.industryIdentifiers;
     let isbn10: string;
     let isbn13: string;
@@ -36,7 +37,7 @@ export default class Book {
       isbn13 = 'None';
     }
 
-    return new Book(data.id, isbn10, isbn13, volumeInfo.authors, volumeInfo.categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title)
+    return new Book(data.id, isbn10, isbn13, authors, volumeInfo.categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title)
   }
 }
 
