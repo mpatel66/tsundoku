@@ -3,11 +3,12 @@ import { FlatList, SafeAreaView, View, StyleSheet} from 'react-native'
 import { Text, Tab, TabView,Layout } from '@ui-kitten/components';
 import AppContext from '../components/context/context';
 import { StatusType } from '../Book';
+import ReadingList from '../components/container/MyBooks/ReadingList';
+import ReadList from '../components/container/MyBooks/ReadList';
+import AddedList from '../components/container/MyBooks/AddedList';
 
 export default function MyBooks() {
-  const {state} = useContext(AppContext);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-    
 
 return (
   <SafeAreaView>
@@ -17,42 +18,19 @@ return (
       style={styles.tab}
       >
       <Tab title={StatusType.READING}>
-        <Layout style={styles.tabContainer}>
-          <Text category='h5'>{StatusType.READING}</Text>
-        </Layout>
+        <ReadingList/>
       </Tab>
       <Tab title={StatusType.ADDED}>
-        <Layout style={styles.tabContainer}>
-          <Text category='h5'>{StatusType.ADDED}</Text>
-        </Layout>
+        <AddedList/>
       </Tab>
       <Tab title={StatusType.READ}>
-        <Layout style={styles.tabContainer}>
-          <Text category='h5'>{StatusType.READ}</Text>
-        </Layout>
+      <ReadList />
       </Tab>
     </TabView>
   </SafeAreaView>
     )
-    
-    // <SafeAreaView>
-    //   <Text category='h1'>This is the my books screen</Text>
-    //   <FlatList
-    //     data={state.addedBooks}
-    //     keyExtractor={item => item.id}
-    //     renderItem={ ({item}) => {
-    //       return (
-    //       <View>
-    //         <Text>{item.title}</Text>
-    //         <Text>{item.status}</Text>
-    //         <Text>{item.rating}</Text>
-    //       </View>)
-    //     }
-    //     }
-    //   />
-    // </SafeAreaView>
-  
 }
+
 const styles = StyleSheet.create({
   tabContainer: {
     height: '100%',

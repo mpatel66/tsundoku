@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import Book, { StatusType } from '../../Book';
+import Book, { StatusType } from '../../../Book';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import AppContext, { ActionType } from '../context/context';
+import AppContext, { ActionType } from '../../context/context';
 
 interface Props {
   book: Book;

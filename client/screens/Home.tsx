@@ -1,16 +1,13 @@
 import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native';
 import { InfiniteQueryObserverResult, useInfiniteQuery, useQueryClient } from 'react-query';
-import Book, {StatusType} from '../Book';
-import DiscoverList from '../components/container/DiscoverList';
-import AppContext from '../components/context/context';
+import DiscoverList from '../components/container/Home/DiscoverList';
 import { fetchByCategoryPaginated } from '../service/APIService';
 const categories = ['science', 'fantasy', 'fiction']
 
 
 const Home: React.FC = ()  => {
   const queryClient = useQueryClient();
-  const {state} = useContext(AppContext)
   const genreName = categories[1];
 
   const {data, isSuccess, fetchNextPage}: InfiniteQueryObserverResult<any> = useInfiniteQuery(['categories', genreName], ({ pageParam = 0 }) => fetchByCategoryPaginated(pageParam, genreName), {

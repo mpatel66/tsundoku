@@ -1,10 +1,8 @@
-import { Card, Layout, Modal, Text, Button, OverflowMenu, MenuItem, IndexPath, SelectItem, Select } from '@ui-kitten/components';
-import React, { useContext, useEffect, useState } from 'react';
+import { Card, Layout, Modal, Text, Button, OverflowMenu, MenuItem, IndexPath } from '@ui-kitten/components';
+import React, { useContext, useState } from 'react';
 import { View, StyleSheet,SafeAreaView, Image, ScrollView} from 'react-native';
-import Book, { RatingType, StatusType } from '../Book';
-import AddButton from '../components/buttons/AddButton';
+import { RatingType, StatusType } from '../Book';
 import IconGenerator from '../components/buttons/IconGenerator';
-import LikeButton from '../components/buttons/LikeButton';
 import AppContext, { ActionType } from '../components/context/context';
 
 

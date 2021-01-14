@@ -1,8 +1,8 @@
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import Book from '../../Book';
-import DiscoverBook from '../presentational/DiscoverBook';
+import Book from '../../../Book';
 import { Layout } from '@ui-kitten/components';
+import DiscoverBook from '../../presentational/Home/DiscoverBook';
 
 
 interface Props {
