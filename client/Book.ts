@@ -8,8 +8,10 @@ export default class Book {
   imageLinks!: ImageLinks;
   pageCount!: number;
   title!: string;
+  status!: string;
+  rating!: string;
 
-  constructor(id: string, isbn10:string, isbn13: string, authors: string[], categories: string[], description: string, imageLinks: ImageLinks, pageCount: number, title:string) {
+  constructor(id: string, isbn10:string, isbn13: string, authors: string[], categories: string[], description: string, imageLinks: ImageLinks, pageCount: number, title:string, status:string, rating: string) {
     this.id = id;
     this.isbn10 = isbn10;
     this.isbn13 = isbn13;
@@ -19,6 +21,8 @@ export default class Book {
     this.imageLinks = imageLinks;
     this.pageCount = pageCount;
     this.title = title;
+    this.status = status;
+    this.rating = rating;
   }
 
   static parseBook( data: any ): Book {
@@ -37,11 +41,26 @@ export default class Book {
       isbn13 = 'None';
     }
 
-    return new Book(data.id, isbn10, isbn13, authors, volumeInfo.categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title)
+    return new Book(data.id, isbn10, isbn13, authors, volumeInfo.categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title, StatusType.NONE, RatingType.NONE)
   }
 }
-
+  
 interface ImageLinks {
   thumbnail: string;
   smallThumbnail: string;
+}
+
+export enum StatusType {
+  ADDED = 'Added',
+  NONE = 'Not Added',
+  READING = 'Reading',
+  READ ='Read',
+  INCOMPLETE ='Unfinished'
+}
+
+export enum RatingType {
+  NONE = 'Add Rating',
+  LIKE = 'Like',
+  LOVE = 'Love',
+  HATE = 'Hate',
 }

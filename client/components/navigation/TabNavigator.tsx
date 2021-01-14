@@ -7,6 +7,7 @@ import MyBooks from '../../screens/MyBooks';
 import Search from '../../screens/Search';
 import UserSettings from '../../screens/UserSettings';
 import IconGenerator from '../buttons/IconGenerator';
+import Book from '../../Book';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +34,6 @@ const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptio
     </BottomNavigation>
   );
 }
-
 
 const TabNavigator: React.FC = () => (
   <Tab.Navigator tabBar={props => <BottomTabBar {...props} />}>

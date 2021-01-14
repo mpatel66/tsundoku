@@ -1,17 +1,18 @@
-import { Button, Icon } from '@ui-kitten/components'
-import React from 'react'
-import { ImageProps } from 'react-native-svg';
+import { Button } from '@ui-kitten/components'
+import React, { useContext, useEffect } from 'react'
 import { StyleSheet } from 'react-native';
 import IconGenerator from './IconGenerator';
+import AppContext, { ActionType, AppContextInterface } from '../context/context';
+import Book from '../../Book';
 
-const AddIcon = (props: (Partial<ImageProps> | undefined)) => (
-  <Icon {...props} name='plus-square'/>
-);
+interface Props {
+  tempState: AppContextInterface;
+}
 
-const AddButton = () => {
+const AddButton: React.FC = () => {
   return (
-    <Button 
-      onPress={()=> {console.log('liked')}} 
+  <Button 
+      onPress={()=> console.log('pressed')}
       size= 'small' 
       appearance='outline' 
       accessoryRight={(props) => {

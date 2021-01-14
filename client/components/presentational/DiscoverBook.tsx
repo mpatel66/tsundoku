@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import Book from '../../Book';
+import React, { useContext, useEffect } from 'react';
+import Book, { StatusType } from '../../Book';
 import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
-import AppContext from '../context/context';
+import AppContext, { ActionType } from '../context/context';
 
 interface Props {
   book: Book;
 }
 
 const DiscoverBook: React.FC<Props> = ({book}) => {
-  const {dispatch} = useContext(AppContext)
+  const {state, dispatch} = useContext(AppContext)
   
   return (
     <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.7} 
-      onPress={() => dispatch({type:'OPEN_MODAL', selectedBook: book})}
+      onPress={() => dispatch({type: ActionType.OPEN_MODAL, selectedBook: book})}
       >
         <Image
         style={styles.image}

@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SafeAreaView } from 'react-native';
 import { InfiniteQueryObserverResult, useInfiniteQuery, useQueryClient } from 'react-query';
+import Book, {StatusType} from '../Book';
 import DiscoverList from '../components/container/DiscoverList';
+import AppContext from '../components/context/context';
 import { fetchByCategoryPaginated } from '../service/APIService';
 const categories = ['science', 'fantasy', 'fiction']
 
 
 const Home: React.FC = ()  => {
   const queryClient = useQueryClient();
+  const {state} = useContext(AppContext)
   const genreName = categories[1];
 
   const {data, isSuccess, fetchNextPage}: InfiniteQueryObserverResult<any> = useInfiniteQuery(['categories', genreName], ({ pageParam = 0 }) => fetchByCategoryPaginated(pageParam, genreName), {
@@ -15,7 +18,6 @@ const Home: React.FC = ()  => {
   })
 
   const getNextPage = async () => {
-    console.log(data?.pageParams)
     let currentItems: any; // since data.pageParams could be type unknown, have set this to any for now.
     if (data?.pageParams !== undefined) {
       // const pages: number[] = data.pageParams.shift()
@@ -30,9 +32,9 @@ const Home: React.FC = ()  => {
     }
     return (
       <SafeAreaView>
-      {isSuccess && 
+      {isSuccess && data &&
         <DiscoverList 
-          books={data && data.pages.flat()} 
+          books={data.pages.flat()} 
           getNextPage={getNextPage}
         />}
       </SafeAreaView>
