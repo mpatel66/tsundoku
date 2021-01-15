@@ -70,11 +70,6 @@ export enum RatingType {
   HATE = 'Hate',
 }
 
-// interface BookDates {
-//   startDate?: Date;
-//   endDate?: Date;
-// }
-
 export interface ReadingBook extends Book {
   startDate: Date;
   rating: RatingType;

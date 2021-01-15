@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { StyleSheet, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import { Layout, Text } from '@ui-kitten/components';
 import AppContext from '../../context/context';
-import { ReadingBook, StatusType } from '../../../Book';
 import ReadingBookItem from '../../presentational/MyBooks/ReadingBookItem';
+import { StatusType, ReadingBook } from '../../../types/Book';
 
 
 const ReadingList = () => {
@@ -20,6 +20,7 @@ const ReadingList = () => {
         keyExtractor={item => item.id}
         renderItem={({item}) => <ReadingBookItem book={item}/>}
         horizontal={false}
+        contentContainerStyle={styles.flatList}
         // snapToInterval={width}
       />
     </Layout>
@@ -35,5 +36,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding:10,
+  },
+  flatList: {
+    paddingBottom: 120,
   }
 });

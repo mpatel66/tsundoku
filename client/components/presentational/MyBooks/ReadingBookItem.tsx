@@ -1,10 +1,11 @@
-import { CalendarRange, Card, Layout, RangeDatepicker, Text } from '@ui-kitten/components'
+import { CalendarRange, Card, RangeDatepicker, Text } from '@ui-kitten/components'
 import React, { useContext, useState } from 'react'
-import { ReadingBook  } from '../../../Book'
+import { ReadingBook  } from '../../../types/Book'
 import { StyleSheet } from 'react-native';
 import AuthorImage from '../../cards/AuthorImage';
-import AppContext, { ActionType } from '../../context/context';
+import AppContext from '../../context/context';
 import RatingButton from '../../buttons/RatingButton';
+import { ActionType } from '../../../types/ReducerAction';
 
 interface Props {
   book: ReadingBook;

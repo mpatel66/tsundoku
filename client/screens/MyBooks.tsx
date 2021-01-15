@@ -1,10 +1,11 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native'
 import { Tab, TabView } from '@ui-kitten/components';
-import { StatusType } from '../Book';
+
 import ReadingList from '../components/container/MyBooks/ReadingList';
 import ReadList from '../components/container/MyBooks/ReadList';
 import AddedList from '../components/container/MyBooks/AddedList';
+import { StatusType } from '../types/Book';
 
 export default function MyBooks() {
   const [selectedIndex, setSelectedIndex] = React.useState(0);

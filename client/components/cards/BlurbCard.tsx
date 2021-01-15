@@ -1,7 +1,8 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import Book from '../../Book';
+import Book from '../../types/Book';
+
 
 interface Props {
   book:Book;

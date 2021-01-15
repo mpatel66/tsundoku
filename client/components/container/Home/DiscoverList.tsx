@@ -1,6 +1,6 @@
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
-import Book from '../../../Book';
+import { FlatList, StyleSheet } from 'react-native';
+import Book from '../../../types/Book';
 import { Layout } from '@ui-kitten/components';
 import DiscoverBook from '../../presentational/Home/DiscoverBook';
 

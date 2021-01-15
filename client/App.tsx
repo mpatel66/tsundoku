@@ -4,11 +4,12 @@ import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
-import Books, { Book, isBook, isReadBook, isReadingBook, RatingType, ReadBook, ReadingBook, StatusType } from './Book';
+import Books, { Book, isBook, isReadBook, isReadingBook, RatingType, ReadBook, ReadingBook, StatusType } from './types/Book';
 import BookModal from './screens/BookModal';
-import AppContext, { Action, ActionType, AppContextInterface } from './components/context/context'
+import AppContext from './components/context/context'
 import TabNavigator from './components/navigation/TabNavigator';
-import AddButton from './components/buttons/AddButton';
+import { AppContextInterface } from './types/AppContext';
+import { ActionType, Action } from './types/ReducerAction';
 
 const queryClient = new QueryClient();
 

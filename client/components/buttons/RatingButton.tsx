@@ -1,8 +1,9 @@
 import { Button, IndexPath, MenuItem, OverflowMenu } from '@ui-kitten/components'
 import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
-import { RatingType, ReadBook, ReadingBook } from '../../Book';
-import AppContext, { ActionType } from '../context/context';
+import { ReadingBook, ReadBook, RatingType } from '../../types/Book';
+import { ActionType } from '../../types/ReducerAction';
+import AppContext from '../context/context';
 import IconGenerator from './IconGenerator'
 
 
@@ -66,6 +67,7 @@ const RatingButton: React.FC<Props> = ({book}) => {
 const styles = StyleSheet.create({
   button: {
     margin: 2,
+    width: 120,
   }
 })
 

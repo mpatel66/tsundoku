@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { StyleSheet, View, Image, TouchableOpacity, FlatList } from 'react-native';
-import { Layout, Text } from '@ui-kitten/components';
+import { StyleSheet, FlatList } from 'react-native';
+import { Divider, Layout, Text } from '@ui-kitten/components';
 import AppContext from '../../context/context';
-import { ReadBook, StatusType } from '../../../Book';
+import { ReadBook, StatusType } from '../../../types/Book';
 import ReadBookItem from '../../presentational/MyBooks/ReadBookItem';
 
 const ReadList = () => {
@@ -18,6 +18,8 @@ const ReadList = () => {
         data={readBooks}
         keyExtractor={item => item.id}
         renderItem={({item}) => <ReadBookItem book={item}/>}
+        ItemSeparatorComponent={() => <Divider/>}
+        contentContainerStyle={styles.flatList}
       />
     </Layout>
   )
@@ -31,5 +33,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding:10,
+  },
+  flatList: {
+    paddingBottom: 120,
   }
 });

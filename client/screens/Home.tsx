@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { SafeAreaView } from 'react-native';
 import { InfiniteQueryObserverResult, useInfiniteQuery, useQueryClient } from 'react-query';
 import DiscoverList from '../components/container/Home/DiscoverList';

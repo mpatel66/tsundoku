@@ -1,11 +1,12 @@
 import { Layout, Modal,Button, OverflowMenu, MenuItem, IndexPath } from '@ui-kitten/components';
 import React, { useContext, useState } from 'react';
-import { View, StyleSheet,SafeAreaView, Image, ScrollView} from 'react-native';
-import { isBook, isReadBook, isReadingBook, RatingType, StatusType } from '../Book';
+import { View, StyleSheet,SafeAreaView } from 'react-native';
+import { isReadBook, isReadingBook, RatingType, StatusType } from '../types/Book';
 import IconGenerator from '../components/buttons/IconGenerator';
 import AuthorImage from '../components/cards/AuthorImage';
 import BlurbCard from '../components/cards/BlurbCard';
-import AppContext, { ActionType } from '../components/context/context';
+import AppContext from '../components/context/context';
+import { ActionType } from '../types/ReducerAction';
 
 
 const BookModal: React.FC = () => {
@@ -66,6 +67,7 @@ const BookModal: React.FC = () => {
     }
     setStatusVisible(false);
   }
+
   function updateRating (index: IndexPath) {
     if (isReadingBook(selectedBook) || isReadBook(selectedBook)) {
       if( index.row === 0){
@@ -117,7 +119,9 @@ const BookModal: React.FC = () => {
               <MenuItem title='Add' disabled={selectedBook.status !== StatusType.NONE}/>
               <MenuItem title='Remove' disabled={selectedBook.status === StatusType.NONE}/>
               <MenuItem title={'Currently ' + StatusType.READING} disabled={selectedBook.status === StatusType.NONE}/>
-              <MenuItem title={StatusType.READ} disabled={selectedBook.status === StatusType.NONE}/>
+              <MenuItem title={StatusType.READ} 
+              disabled={selectedBook.status === StatusType.NONE}
+              />
           </OverflowMenu>
 
           {/* CHANGE BOOK RATING BUTTON */}

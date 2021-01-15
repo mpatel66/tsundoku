@@ -1,4 +1,4 @@
-import { Book } from "../Book";
+import { Book } from "../types/Book";
 
 const BASE_URL: string = 'https://www.googleapis.com/books/v1/volumes';
 const fieldMask: string = 'id,volumeInfo(title,subtitle,authors,description,industryIdentifiers,pageCount,categories,imageLinks)';

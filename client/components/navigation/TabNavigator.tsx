@@ -7,7 +7,6 @@ import MyBooks from '../../screens/MyBooks';
 import Search from '../../screens/Search';
 import UserSettings from '../../screens/UserSettings';
 import IconGenerator from '../buttons/IconGenerator';
-import Book from '../../Book';
 
 const Tab = createBottomTabNavigator();
 
