@@ -1,7 +1,6 @@
-import React, { useContext } from 'react'
-import { FlatList, SafeAreaView, View, StyleSheet} from 'react-native'
-import { Text, Tab, TabView,Layout } from '@ui-kitten/components';
-import AppContext from '../components/context/context';
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native'
+import { Tab, TabView } from '@ui-kitten/components';
 import { StatusType } from '../Book';
 import ReadingList from '../components/container/MyBooks/ReadingList';
 import ReadList from '../components/container/MyBooks/ReadList';
@@ -17,18 +16,18 @@ return (
       onSelect={index => setSelectedIndex(index)}
       style={styles.tab}
       >
-      <Tab title={StatusType.READING}>
-        <ReadingList/>
-      </Tab>
-      <Tab title={StatusType.ADDED}>
-        <AddedList/>
-      </Tab>
-      <Tab title={StatusType.READ}>
-      <ReadList />
-      </Tab>
+        <Tab title={StatusType.READING}>
+          <ReadingList/>
+        </Tab>
+        <Tab title={StatusType.ADDED}>
+          <AddedList/>
+        </Tab>
+        <Tab title={StatusType.READ}>
+          <ReadList />
+        </Tab>
     </TabView>
   </SafeAreaView>
-    )
+  )
 }
 
 const styles = StyleSheet.create({

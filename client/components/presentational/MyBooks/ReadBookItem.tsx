@@ -1,12 +1,12 @@
 import { Layout, Text } from '@ui-kitten/components'
 import React from 'react'
-import Book from '../../../Book'
+import Book, { ReadBook } from '../../../Book'
 
 interface Props {
-  book: Book;
+  book: ReadBook;
 }
 
-const ReadBook: React.FC<Props> = ({book}) => {
+const ReadBookItem: React.FC<Props> = ({book}) => {
   return (
     <Layout>
       <Text category='h2'>
@@ -16,4 +16,4 @@ const ReadBook: React.FC<Props> = ({book}) => {
   )
 }
 
-export default ReadBook;
+export default ReadBookItem;

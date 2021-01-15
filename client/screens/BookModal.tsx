@@ -1,8 +1,10 @@
-import { Card, Layout, Modal, Text, Button, OverflowMenu, MenuItem, IndexPath } from '@ui-kitten/components';
+import { Layout, Modal,Button, OverflowMenu, MenuItem, IndexPath } from '@ui-kitten/components';
 import React, { useContext, useState } from 'react';
 import { View, StyleSheet,SafeAreaView, Image, ScrollView} from 'react-native';
-import { RatingType, StatusType } from '../Book';
+import { isBook, isReadBook, isReadingBook, RatingType, StatusType } from '../Book';
 import IconGenerator from '../components/buttons/IconGenerator';
+import AuthorImage from '../components/cards/AuthorImage';
+import BlurbCard from '../components/cards/BlurbCard';
 import AppContext, { ActionType } from '../components/context/context';
 
 
@@ -15,27 +17,29 @@ const BookModal: React.FC = () => {
   const [selectedRating, setSelectedRating ] = useState({row: 0 } as IndexPath);
 
   const statusUpdateButton = () => {
-    return (<Button 
-    onPress={()=> setStatusVisible(true)} 
-    size='small' 
-    appearance='filled' 
-    accessoryRight={(props) => {return(
-      <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
-    style={styles.button}>
-    {selectedBook.status}
-  </Button>)
-  }
+    return (
+    <Button 
+      onPress={() => setStatusVisible(true)}
+      size='small' 
+      appearance='filled' 
+      accessoryRight={(props) => {return(
+        <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
+      style={styles.button}>
+      {selectedBook.status}
+    </Button>
+  )};
+  
 
   const ratingButton = () => {
-    return (<Button 
-    onPress={()=> setRatingVisible(true)} 
-    size='small' 
-    appearance='outline' 
-    accessoryRight={(props) => {return(
-      <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
-    style={styles.button}>
-    {selectedBook.rating}
-  </Button>)
+      return (<Button 
+        onPress={() => setRatingVisible(true)} 
+        size='small' 
+        appearance='outline' 
+        accessoryRight={(props) => {return(
+          <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
+        style={styles.button}>
+        {(isReadingBook(selectedBook) || isReadBook(selectedBook))? selectedBook.rating : 'Add Book'}
+      </Button>)
   }
   
   function updateStatus(index: IndexPath) {
@@ -51,30 +55,31 @@ const BookModal: React.FC = () => {
       setSelectedStatus(index);
     }
     else if (index.row === 2) {
-      dispatch({type: ActionType.UPDATE_BOOK_STATUS, updatedBook: selectedBook, status: StatusType.READING});
+      dispatch({type: ActionType.UPDATE_BOOK_READING, updatedBook: selectedBook});
       selectedBook.status = StatusType.READING;
       setSelectedStatus(index);
     }
     else if (index.row === 3) {
-      dispatch({type: ActionType.UPDATE_BOOK_STATUS, updatedBook: selectedBook, status: StatusType.READ});
+      dispatch({type: ActionType.UPDATE_BOOK_READ, updatedBook: selectedBook});
       selectedBook.status = StatusType.READ;
       setSelectedStatus(index);
     }
     setStatusVisible(false);
   }
   function updateRating (index: IndexPath) {
-    console.log(index)
-    if( index.row === 0){
-      dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LIKE})
-      selectedBook.rating = RatingType.LIKE;
-    }
-    else if( index.row === 1){
-      dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LOVE})
-      selectedBook.rating = RatingType.LOVE;
-    }
-    else if( index.row === 2){
-      dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.HATE})
-      selectedBook.rating = RatingType.HATE;
+    if (isReadingBook(selectedBook) || isReadBook(selectedBook)) {
+      if( index.row === 0){
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LIKE})
+        selectedBook.rating = RatingType.LIKE;
+      }
+      else if( index.row === 1){
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LOVE})
+        selectedBook.rating = RatingType.LOVE;
+      }
+      else if( index.row === 2){
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.HATE})
+        selectedBook.rating = RatingType.HATE;
+      }
     }
     setRatingVisible(false);
     setSelectedRating(index);
@@ -99,14 +104,8 @@ const BookModal: React.FC = () => {
         <IconGenerator props={props} iconName={'close-outline'} />}
         style={styles.button}
         />
-        <Card>
-            <Text category='h4'>{selectedBook.title}</Text>
-            <Text category='s1'>{selectedBook.authors.length > 1 ? selectedBook.authors.join(', ') : selectedBook.authors}</Text>
-            <Image
-            style={styles.image}
-            source={{uri: selectedBook.imageLinks.thumbnail}}
-            />
-        </Card>
+        {/* DISPLAY cover, author & title of book */}
+        <AuthorImage book={selectedBook}/>
         <View style={styles.buttons}>
           {/* CHANGE BOOK STATUS BUTTON */}
           <OverflowMenu
@@ -123,7 +122,7 @@ const BookModal: React.FC = () => {
 
           {/* CHANGE BOOK RATING BUTTON */}
 
-          {selectedBook.status === StatusType.READ && 
+          { (selectedBook.status === StatusType.READING || selectedBook.status === StatusType.READ) && 
           <OverflowMenu
             anchor={ratingButton}
             visible={ratingVisible}
@@ -137,18 +136,10 @@ const BookModal: React.FC = () => {
             <MenuItem title='Hate' accessoryRight={(props) => {return(
       <IconGenerator props={props} iconName={'umbrella'} />)}}/>
           </OverflowMenu>}
-          
         </View>
-         <ScrollView>
-          <Card style={styles.blurbText}>
-            <Text category='s1'>Pages</Text>
-            <Text>{selectedBook.pageCount}</Text>
-            <Text category='s1'>Genres</Text>
-            <Text>{selectedBook.categories.join(', ')}</Text>
-            <Text category='s1'>Description</Text>
-            <Text>{selectedBook.description}</Text>
-          </Card>
-        </ScrollView>
+
+        {/* DISPLAYS blurb text, pages and other data */}
+        <BlurbCard book={selectedBook}/>
       </Layout>
       </Modal>
     </SafeAreaView>

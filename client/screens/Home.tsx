@@ -25,7 +25,7 @@ const Home: React.FC = ()  => {
         currentItems = data.pageParams[data.pageParams.length-1];
       }
     }
-    return await fetchNextPage({pageParam: currentItems+10}) // startIndex should increase by 10 as we start at index 0.
+    return await fetchNextPage({pageParam: currentItems+10}); // startIndex should increase by 10 as we start at index 0.
     }
     return (
       <SafeAreaView>

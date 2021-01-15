@@ -1,22 +1,26 @@
-import React, { useContext } from 'react'
-import { StyleSheet, View, Image, TouchableOpacity, FlatList } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, FlatList, Dimensions } from 'react-native';
 import { Layout, Text } from '@ui-kitten/components';
 import AppContext from '../../context/context';
-import { StatusType } from '../../../Book';
-import ReadingBook from '../../presentational/MyBooks/ReadingBook';
+import { ReadingBook, StatusType } from '../../../Book';
+import ReadingBookItem from '../../presentational/MyBooks/ReadingBookItem';
+
 
 const ReadingList = () => {
   const {state} = useContext(AppContext);
+  const currentlyReading = state.addedBooks.filter(item => (item.status === StatusType.READING)) as ReadingBook[];
+
   return (
     <Layout style={styles.container}>
       <Text category='h5'>
         Reading List
       </Text>
       <FlatList 
-        data={state.addedBooks.filter(item => item.status === StatusType.READING)}
+        data={currentlyReading}
         keyExtractor={item => item.id}
-        renderItem={({item}) => <ReadingBook book={item}/>}
-        horizontal={true}
+        renderItem={({item}) => <ReadingBookItem book={item}/>}
+        horizontal={false}
+        // snapToInterval={width}
       />
     </Layout>
 
