@@ -19,7 +19,7 @@ const ReadList = () => {
         keyExtractor={item => item.id}
         renderItem={({item}) => <ReadBookItem book={item}/>}
         ItemSeparatorComponent={() => <Divider/>}
-        contentContainerStyle={styles.flatList}
+        // contentContainerStyle={styles.flatList}
       />
     </Layout>
   )
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding:10,
   },
-  flatList: {
-    paddingBottom: 120,
-  }
+  // flatList: {
+  //   // paddingBottom: 20,
+  // }
 });

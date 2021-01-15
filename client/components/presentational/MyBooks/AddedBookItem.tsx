@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, StyleSheet, Dimensions } from 'react-native'
+import { View, StyleSheet  } from 'react-native'
 import Book from '../../../types/Book'
 import SampleDetails from '../../cards/SampleDetails'
 import TouchableCover from '../../cards/TouchableCover'
+import screen from '../../../screenDimension';
 
 interface Props {
   book: Book;
 }
-const { width } = Dimensions.get('screen');
+const { width } = screen;
 const AddedBookItem: React.FC<Props> = ({book}) => {
   return (
     <View style={styles.card}>

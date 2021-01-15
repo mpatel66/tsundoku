@@ -9,21 +9,24 @@ import IconGenerator from './IconGenerator'
 
 interface Props {
   book: ReadingBook | ReadBook;
+  size: 'small' | 'medium' |'large';
 }
 
-const RatingButton: React.FC<Props> = ({book}) => {
+const RatingButton: React.FC<Props> = ({book, size}) => {
   const { dispatch } = useContext(AppContext)
   const [ratingVisible, setRatingVisible ] = useState(false);
   const [selectedRating, setSelectedRating ] = useState({row: 0 } as IndexPath);
 
+  const buttonWidth = size ==='small' ? {width: 120} : {width: 150};
+
   const ratingButton = () => {
     return (<Button 
       onPress={() => setRatingVisible(true)} 
-      size='small' 
+      size={size} 
       appearance='outline' 
       accessoryRight={(props) => {return(
         <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
-      style={styles.button}>
+      style={[styles.button, buttonWidth]}>
       {book.rating}
     </Button>)
   }
@@ -48,26 +51,25 @@ const RatingButton: React.FC<Props> = ({book}) => {
 
 
   return (
-<OverflowMenu
-  anchor={ratingButton}
-  visible={ratingVisible}
-  selectedIndex={selectedRating}
-  onSelect={updateRating}
-  onBackdropPress={() => setRatingVisible(false)}>
-    <MenuItem title='Like' accessoryRight={(props) => {return(
-    <IconGenerator props={props} iconName={'sun'} />)}}/>
-    <MenuItem title='Love' accessoryRight={(props) => {return(
-    <IconGenerator props={props} iconName={'moon'} />)}}/>
-    <MenuItem title='Hate' accessoryRight={(props) => {return(
-    <IconGenerator props={props} iconName={'umbrella'} />)}}/>
-  </OverflowMenu>
+    <OverflowMenu
+      anchor={ratingButton}
+      visible={ratingVisible}
+      selectedIndex={selectedRating}
+      onSelect={updateRating}
+      onBackdropPress={() => setRatingVisible(false)}>
+        <MenuItem title='Like' accessoryRight={(props) => {return(
+        <IconGenerator props={props} iconName={'sun'} />)}}/>
+        <MenuItem title='Love' accessoryRight={(props) => {return(
+        <IconGenerator props={props} iconName={'moon'} />)}}/>
+        <MenuItem title='Hate' accessoryRight={(props) => {return(
+        <IconGenerator props={props} iconName={'umbrella'} />)}}/>
+    </OverflowMenu>
   )
 }
 
 const styles = StyleSheet.create({
   button: {
     margin: 2,
-    width: 120,
   }
 })
 

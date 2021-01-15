@@ -10,9 +10,6 @@ const AddedList = () => {
   const added = state.addedBooks.filter(item => (item.status === StatusType.ADDED)) as Book[];
   return (
     <Layout style={styles.container}>
-    <Text category='h5'>
-      Added List
-    </Text>
     <FlatList 
         data={added}
         keyExtractor={item => item.id}

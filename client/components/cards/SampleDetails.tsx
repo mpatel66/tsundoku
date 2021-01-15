@@ -5,6 +5,7 @@ import RatingButton from '../buttons/RatingButton'
 import moment from 'moment'
 import StatusUpdateButton from '../buttons/StatusUpdateButton'
 import Book, { ReadBook, isReadBook, isBook } from '../../types/Book'
+import UpdateReadDate from '../buttons/UpdateReadDate'
 
 interface Props {
   book: ReadBook | Book;
@@ -19,8 +20,9 @@ const  SampleDetails: React.FC<Props> = ({book}) => {
 
     {isReadBook(book) && 
     <View>
-      <Text category='p1'>Last Read on {moment(book.endDate).format('do MMM YYYY')}</Text>
-      <RatingButton book={book}/>
+      <Text category='p1'>Last Read: {moment(book.endDate).format('Do MMM YYYY')}</Text>
+      <UpdateReadDate book={book} size='small' />
+      <RatingButton book={book} size='small'/>
     </View>}
     {isBook(book) && 
       <View>
