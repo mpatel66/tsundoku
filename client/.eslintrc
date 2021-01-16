@@ -24,7 +24,14 @@
   ],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
-    "react/prop-types": 0
+    "react/prop-types": 0,
+    "indent": ["error", 2],
+    "keyword-spacing": "error",
+    "linebreak-style": "error",
+    "quotes": ["error","single"],
+    "semi": "error",
+    "space-before-blocks": "error",
+    "space-before-function-paren": "error"
     
   }
 }

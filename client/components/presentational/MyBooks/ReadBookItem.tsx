@@ -1,6 +1,6 @@
-import React from 'react'
-import { View,StyleSheet, Dimensions} from 'react-native'
-import { ReadBook } from '../../../types/Book'
+import React from 'react';
+import { View,StyleSheet, Dimensions} from 'react-native';
+import { ReadBook } from '../../../types/Book';
 import TouchableCover from '../../cards/TouchableCover';
 import SampleDetails from '../../cards/SampleDetails';
 
@@ -10,15 +10,15 @@ interface Props {
 const { width } = Dimensions.get('screen');
 const ReadBookItem: React.FC<Props> = ({book}) => {
   return (
-  <View style={styles.card}>
+    <View style={styles.card}>
     
-    <View style={styles.imageContainer}>
-      <TouchableCover book={book} imageSize='small'/>
+      <View style={styles.imageContainer}>
+        <TouchableCover book={book} imageSize='small'/>
+      </View>
+      <SampleDetails book={book}/>
     </View>
-    <SampleDetails book={book}/>
-  </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   data: {
     width: 260,
   }
-})
+});
 
 export default ReadBookItem;

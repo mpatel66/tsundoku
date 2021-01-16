@@ -7,19 +7,19 @@ import DiscoverBook from '../../presentational/Home/DiscoverBook';
 
 interface Props {
   books: Book[] | undefined;
-  getNextPage(): any;
+  getNextPage(): unknown; //changed from any to unknown
 }
 
 const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
   function renderBooks ({ item } : {item: Book}) {
     return (
       <DiscoverBook book={item}/>
-    )
+    );
   }
 
-  return(
+  return (
     <Layout level='2'>
-    {books && 
+      {books && 
     <FlatList
       data={books}
       keyExtractor={item => item.id}
@@ -30,17 +30,17 @@ const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
       onEndReached={books.length < 70 ? getNextPage: () =>{}}
       onEndReachedThreshold={0.5}
     />
-    }
+      }
     </Layout>
     
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: { 
     alignItems:'center',
     marginTop: 20,
   },
-})
+});
 
 export default DiscoverList;

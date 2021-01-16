@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, StyleSheet  } from 'react-native'
-import Book from '../../../types/Book'
-import SampleDetails from '../../cards/SampleDetails'
-import TouchableCover from '../../cards/TouchableCover'
+import React from 'react';
+import { View, StyleSheet  } from 'react-native';
+import Book from '../../../types/Book';
+import SampleDetails from '../../cards/SampleDetails';
+import TouchableCover from '../../cards/TouchableCover';
 import screen from '../../../screenDimension';
 
 interface Props {
@@ -17,8 +17,8 @@ const AddedBookItem: React.FC<Props> = ({book}) => {
       </View>
       <SampleDetails book={book}/>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   data: {
     width: 260,
   }
-})
+});
 
 
 export default AddedBookItem;

@@ -1,6 +1,6 @@
-import { Layout } from '@ui-kitten/components'
-import React from 'react'
-import { ReadingBook  } from '../../../types/Book'
+import { Layout } from '@ui-kitten/components';
+import React from 'react';
+import { ReadingBook  } from '../../../types/Book';
 import { StyleSheet, View } from 'react-native';
 import AuthorImage from '../../cards/AuthorImage';
 import RatingButton from '../../buttons/RatingButton';
@@ -30,8 +30,8 @@ const ReadingBookItem: React.FC<Props> = ({book}) => {
       </View>
       
     </Layout>
-  )
-}
+  );
+};
 
 export default ReadingBookItem;
 

@@ -24,8 +24,8 @@ const ReadingList: React.FC = () => {
       />
     </Layout>
 
-  )
-}
+  );
+};
 
 export default ReadingList;
 

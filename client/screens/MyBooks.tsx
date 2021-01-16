@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Tab, TabView } from '@ui-kitten/components';
 
 import ReadingList from '../components/container/MyBooks/ReadingList';
@@ -10,12 +10,12 @@ import { StatusType } from '../types/Book';
 const MyBooks: React.FC  = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-return (
-  <SafeAreaView>
-    <TabView
-      selectedIndex={selectedIndex}
-      onSelect={index => setSelectedIndex(index)}
-      style={styles.tab}
+  return (
+    <SafeAreaView>
+      <TabView
+        selectedIndex={selectedIndex}
+        onSelect={index => setSelectedIndex(index)}
+        style={styles.tab}
       >
         <Tab title={StatusType.READING}>
           <ReadingList/>
@@ -26,10 +26,10 @@ return (
         <Tab title={StatusType.READ}>
           <ReadList />
         </Tab>
-    </TabView>
-  </SafeAreaView>
-  )
-}
+      </TabView>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   tabContainer: {

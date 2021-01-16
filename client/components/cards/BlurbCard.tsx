@@ -20,8 +20,8 @@ const BlurbCard: React.FC<Props> = ({book}) => {
         <Text>{book.description}</Text>
       </Card>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   blurbText: {

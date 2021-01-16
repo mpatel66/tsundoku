@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { Divider, Layout  } from '@ui-kitten/components';
 import AppContext from '../../context/context';
@@ -10,7 +10,7 @@ const AddedList: React.FC = () => {
   const added = state.addedBooks.filter(item => (item.status === StatusType.ADDED)) as Book[];
   return (
     <Layout style={styles.container}>
-    <FlatList 
+      <FlatList 
         data={added}
         keyExtractor={item => item.id}
         renderItem={({item}) => <AddedBookItem book={item}/>}
@@ -18,8 +18,8 @@ const AddedList: React.FC = () => {
         contentContainerStyle={styles.flatList}
       />
     </Layout>
-  )
-}
+  );
+};
 
 export default AddedList;
 

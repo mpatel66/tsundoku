@@ -1,6 +1,6 @@
-import { createContext } from 'react'
+import { createContext } from 'react';
 import Books from '../../types/Book';
-import { Context } from '../../types/AppContext'
+import { Context } from '../../types/AppContext';
 
 
 const AppContext = createContext<Context>({
@@ -11,6 +11,6 @@ const AppContext = createContext<Context>({
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   dispatch: () => {}
-})
+});
 
 export default AppContext;

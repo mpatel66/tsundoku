@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { Divider, Layout, Text } from '@ui-kitten/components';
 import AppContext from '../../context/context';
@@ -22,8 +22,8 @@ const ReadList: React.FC = () => {
         // contentContainerStyle={styles.flatList}
       />
     </Layout>
-  )
-}
+  );
+};
 
 export default ReadList;
 

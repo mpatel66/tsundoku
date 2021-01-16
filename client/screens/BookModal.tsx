@@ -11,7 +11,7 @@ import { ActionType } from '../types/ReducerAction';
 // This file is pretty monstrous as I found that the children components of a modal doesn't properly consume the context
 
 const BookModal: React.FC = () => {
-  const {state, dispatch} = useContext(AppContext)
+  const {state, dispatch} = useContext(AppContext);
   const { selectedBook, modalVisible} = state;
   const [statusVisible, setStatusVisible ] = useState(false);
   const [ratingVisible, setRatingVisible] = useState(false);
@@ -20,38 +20,38 @@ const BookModal: React.FC = () => {
 
   const statusUpdateButton = () => {
     return (
-    <Button 
-      onPress={() => setStatusVisible(true)}
-      size='small' 
-      appearance='filled' 
-      accessoryRight={(props) => {return(
-        <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
-      style={styles.button}>
-      {selectedBook.status}
-    </Button>
-  )};
+      <Button 
+        onPress={() => setStatusVisible(true)}
+        size='small' 
+        appearance='filled' 
+        accessoryRight={(props) => {return (
+          <IconGenerator props={props} iconName={'chevron-down-outline'} />);}}
+        style={styles.button}>
+        {selectedBook.status}
+      </Button>
+    );};
   
 
   const ratingButton = () => {
-      return (<Button 
-        onPress={() => setRatingVisible(true)} 
-        size='small' 
-        appearance='outline' 
-        accessoryRight={(props) => {return(
-          <IconGenerator props={props} iconName={'chevron-down-outline'} />)}}
-        style={styles.button}>
-        {(isReadingBook(selectedBook) || isReadBook(selectedBook))? selectedBook.rating : 'Add Book'}
-      </Button>)
-  }
+    return (<Button 
+      onPress={() => setRatingVisible(true)} 
+      size='small' 
+      appearance='outline' 
+      accessoryRight={(props) => {return (
+        <IconGenerator props={props} iconName={'chevron-down-outline'} />);}}
+      style={styles.button}>
+      {(isReadingBook(selectedBook) || isReadBook(selectedBook))? selectedBook.rating : 'Add Book'}
+    </Button>);
+  };
   
-  function updateStatus(index: IndexPath) {
+  function updateStatus (index: IndexPath) {
     if (index.row === 0) {
       dispatch({type: ActionType.ADD_BOOK, addedBook: selectedBook});
       selectedBook.status = StatusType.ADDED;
       setStatusVisible(false);
       setSelectedStatus({row: 1} as IndexPath) ; 
     }
-    else if (index.row === 1 ){
+    else if (index.row === 1 ) {
       dispatch({type: ActionType.REMOVE_BOOK, removeBook: selectedBook});
       selectedBook.status = StatusType.NONE;
       setSelectedStatus(index);
@@ -71,16 +71,16 @@ const BookModal: React.FC = () => {
 
   function updateRating (index: IndexPath) {
     if (isReadingBook(selectedBook) || isReadBook(selectedBook)) {
-      if( index.row === 0){
-        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LIKE})
+      if ( index.row === 0) {
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LIKE});
         selectedBook.rating = RatingType.LIKE;
       }
-      else if( index.row === 1){
-        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LOVE})
+      else if ( index.row === 1) {
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.LOVE});
         selectedBook.rating = RatingType.LOVE;
       }
-      else if( index.row === 2){
-        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.HATE})
+      else if ( index.row === 2) {
+        dispatch({type: ActionType.UPDATE_RATING, updatedBook: selectedBook, rating: RatingType.HATE});
         selectedBook.rating = RatingType.HATE;
       }
     }
@@ -96,65 +96,65 @@ const BookModal: React.FC = () => {
         style={styles.container}
       >
         
-      <Layout style={styles.container} level='3'>
-      <Button 
-        onPress={()=> {
-          dispatch({type: ActionType.CLOSE_MODAL})
-        }}
-        size='large'
-        appearance='ghost' 
-        accessoryRight={(props) => 
-        <IconGenerator props={props} iconName={'close-outline'} />}
-        style={styles.button}
-        />
-        {/* DISPLAY cover, author & title of book */}
-        <AuthorImage book={selectedBook}/>
-        <View style={styles.buttons}>
-          {/* CHANGE BOOK STATUS BUTTON */}
-          <OverflowMenu
-            anchor={statusUpdateButton}
-            visible={statusVisible}
-            selectedIndex={selectedStatus}
-            onSelect={updateStatus}
-            onBackdropPress={() => setStatusVisible(false)}>
+        <Layout style={styles.container} level='3'>
+          <Button 
+            onPress={()=> {
+              dispatch({type: ActionType.CLOSE_MODAL});
+            }}
+            size='large'
+            appearance='ghost' 
+            accessoryRight={(props) => 
+              <IconGenerator props={props} iconName={'close-outline'} />}
+            style={styles.button}
+          />
+          {/* DISPLAY cover, author & title of book */}
+          <AuthorImage book={selectedBook}/>
+          <View style={styles.buttons}>
+            {/* CHANGE BOOK STATUS BUTTON */}
+            <OverflowMenu
+              anchor={statusUpdateButton}
+              visible={statusVisible}
+              selectedIndex={selectedStatus}
+              onSelect={updateStatus}
+              onBackdropPress={() => setStatusVisible(false)}>
               <MenuItem title='Add' disabled={selectedBook.status !== StatusType.NONE}/>
               <MenuItem title='Remove' disabled={selectedBook.status === StatusType.NONE}/>
               <MenuItem title={'Currently ' + StatusType.READING} disabled={selectedBook.status === StatusType.NONE}/>
               <MenuItem title={StatusType.READ} 
-              disabled={selectedBook.status === StatusType.NONE}
+                disabled={selectedBook.status === StatusType.NONE}
               />
-          </OverflowMenu>
+            </OverflowMenu>
 
-          {/* CHANGE BOOK RATING BUTTON */}
+            {/* CHANGE BOOK RATING BUTTON */}
 
-          { (selectedBook.status === StatusType.READING || selectedBook.status === StatusType.READ) && 
+            { (selectedBook.status === StatusType.READING || selectedBook.status === StatusType.READ) && 
           <OverflowMenu
             anchor={ratingButton}
             visible={ratingVisible}
             selectedIndex={selectedRating}
             onSelect={updateRating}
             onBackdropPress={() => setRatingVisible(false)}>
-            <MenuItem title='Like' accessoryRight={(props) => {return(
-      <IconGenerator props={props} iconName={'sun'} />)}}/>
-            <MenuItem title='Love' accessoryRight={(props) => {return(
-      <IconGenerator props={props} iconName={'moon'} />)}}/>
-            <MenuItem title='Hate' accessoryRight={(props) => {return(
-      <IconGenerator props={props} iconName={'umbrella'} />)}}/>
+            <MenuItem title='Like' accessoryRight={(props) => {return (
+              <IconGenerator props={props} iconName={'sun'} />);}}/>
+            <MenuItem title='Love' accessoryRight={(props) => {return (
+              <IconGenerator props={props} iconName={'moon'} />);}}/>
+            <MenuItem title='Hate' accessoryRight={(props) => {return (
+              <IconGenerator props={props} iconName={'umbrella'} />);}}/>
           </OverflowMenu>}
-        </View>
+          </View>
 
-        {/* DISPLAYS blurb text, pages and other data */}
-        <BlurbCard book={selectedBook}/>
-      </Layout>
+          {/* DISPLAYS blurb text, pages and other data */}
+          <BlurbCard book={selectedBook}/>
+        </Layout>
       </Modal>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '90%'
   },
   backdrop: {
@@ -178,6 +178,6 @@ const styles = StyleSheet.create({
   button: {
     margin:2,
   }
-})
+});
 
 export default BookModal;

@@ -20,8 +20,8 @@ const AuthorImage: React.FC<Props> = ( {book}) => {
       </Card>
     </View>
     
-  )
-}
+  );
+};
 export default AuthorImage;
 const styles = StyleSheet.create({
   imageContainer: {
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   card: {
     margin: 10,
   },
-})
+});
