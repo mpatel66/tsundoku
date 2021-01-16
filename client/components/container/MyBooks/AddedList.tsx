@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { StyleSheet, FlatList } from 'react-native';
-import { Divider, Layout, Text } from '@ui-kitten/components';
+import { Divider, Layout  } from '@ui-kitten/components';
 import AppContext from '../../context/context';
 import Book, { StatusType } from '../../../types/Book';
 import AddedBookItem from '../../presentational/MyBooks/AddedBookItem';
 
-const AddedList = () => {
+const AddedList: React.FC = () => {
   const {state} = useContext(AppContext);
   const added = state.addedBooks.filter(item => (item.status === StatusType.ADDED)) as Book[];
   return (

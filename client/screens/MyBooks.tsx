@@ -7,7 +7,7 @@ import ReadList from '../components/container/MyBooks/ReadList';
 import AddedList from '../components/container/MyBooks/AddedList';
 import { StatusType } from '../types/Book';
 
-export default function MyBooks() {
+const MyBooks: React.FC  = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
 return (
@@ -43,3 +43,4 @@ const styles = StyleSheet.create({
   }
 });
 
+export default MyBooks;

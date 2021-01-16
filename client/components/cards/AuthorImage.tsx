@@ -1,6 +1,6 @@
 import { Card, Text } from '@ui-kitten/components';
 import React from 'react';
-import { Image, StyleSheet, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import Book from '../../types/Book';
 import TouchableCover from './TouchableCover';
 

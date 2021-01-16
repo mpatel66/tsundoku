@@ -3,7 +3,6 @@ import { View,StyleSheet, Dimensions} from 'react-native'
 import { ReadBook } from '../../../types/Book'
 import TouchableCover from '../../cards/TouchableCover';
 import SampleDetails from '../../cards/SampleDetails';
-import UpdateReadDate from '../../buttons/UpdateReadDate';
 
 interface Props {
   book: ReadBook;

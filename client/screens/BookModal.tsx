@@ -8,6 +8,7 @@ import BlurbCard from '../components/cards/BlurbCard';
 import AppContext from '../components/context/context';
 import { ActionType } from '../types/ReducerAction';
 
+// This file is pretty monstrous as I found that the children components of a modal doesn't properly consume the context
 
 const BookModal: React.FC = () => {
   const {state, dispatch} = useContext(AppContext)

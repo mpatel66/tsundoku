@@ -1,14 +1,10 @@
-import { Button, Icon } from '@ui-kitten/components'
+import { Button } from '@ui-kitten/components'
 import React from 'react'
-import { ImageProps } from 'react-native-svg';
 import { StyleSheet } from 'react-native';
 import IconGenerator from './IconGenerator';
 
-const HeartIcon = (props: (Partial<ImageProps> | undefined)) => (
-  <Icon {...props} name='heart'/>
-);
 
-const LikeButton = () => {
+const LikeButton: React.FC = () => {
   return (
     <Button 
       onPress={()=> {console.log('liked')}} 

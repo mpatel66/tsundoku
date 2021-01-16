@@ -5,7 +5,7 @@ import AppContext from '../../context/context';
 import { ReadBook, StatusType } from '../../../types/Book';
 import ReadBookItem from '../../presentational/MyBooks/ReadBookItem';
 
-const ReadList = () => {
+const ReadList: React.FC = () => {
   const {state} = useContext(AppContext);
   const readBooks = state.addedBooks.filter(item => (item.status === StatusType.READ)) as ReadBook[];
 

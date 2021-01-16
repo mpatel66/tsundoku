@@ -3,10 +3,12 @@ import { SafeAreaView } from 'react-native';
 import { Text } from '@ui-kitten/components';
 
 
-export default function UserSettings() {
+const UserSettings: React.FC = () => {
   return (
     <SafeAreaView>
-      <Text category='h1'>This is user's settings screen</Text>
+      <Text category='h1'>This is users settings screen</Text>
     </SafeAreaView>
   )
 }
+
+export default UserSettings;

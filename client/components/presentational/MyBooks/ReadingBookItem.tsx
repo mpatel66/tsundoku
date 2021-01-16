@@ -1,4 +1,4 @@
-import { Card, Layout, Text } from '@ui-kitten/components'
+import { Layout } from '@ui-kitten/components'
 import React from 'react'
 import { ReadingBook  } from '../../../types/Book'
 import { StyleSheet, View } from 'react-native';
@@ -14,7 +14,7 @@ interface Props {
 const {width, height} = screen;
 
 const ReadingBookItem: React.FC<Props> = ({book}) => {
-  const days = book.startDate && Math.floor((Date.now() - book.startDate?.getTime())/(1000*60*60*24));
+  // const days = book.startDate && Math.floor((Date.now() - book.startDate?.getTime())/(1000*60*60*24));
   return (
     <Layout style={styles.container} level='2'>
       <View style={styles.innerContainer}>

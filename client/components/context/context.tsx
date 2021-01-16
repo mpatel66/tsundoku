@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import { createContext } from 'react'
 import Books from '../../types/Book';
 import { Context } from '../../types/AppContext'
 
@@ -9,6 +9,7 @@ const AppContext = createContext<Context>({
     selectedBook: {} as Books,
     addedBooks: [] as Books[]
   },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   dispatch: () => {}
 })
 
