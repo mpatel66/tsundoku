@@ -25,3 +25,14 @@ export async function fetchByCategoryPaginated(pageParam:number, subject:string)
     Promise.reject(response);
   }
 }
+
+export async function fetchBySearch(searchTerm: string) {
+  const response = await fetch(`${BASE_URL}?orderBy=relevance&langRestrict=en&fields=items(${fieldMask})&q=${searchTerm}&maxResults=10`)
+  if (response.status < 400) {
+    const data = await response.json();
+    const googleBooks = data.items.filter((item: any) => !!item.volumeInfo.imageLinks).map((item: any) => Book.parseBook(item))
+    return googleBooks;
+  } else {
+    Promise.reject(response);
+  }
+}
