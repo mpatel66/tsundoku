@@ -6,7 +6,7 @@ import ReadingBookItem from '../../presentational/MyBooks/ReadingBookItem';
 import { StatusType, ReadingBook } from '../../../types/Book';
 import screen from '../../../screenDimension';
 
-const { width, height } = screen;
+const {  height } = screen;
 const ReadingList: React.FC = () => {
   const {state} = useContext(AppContext);
   const currentlyReading = state.addedBooks.filter(item => (item.status === StatusType.READING)) as ReadingBook[];

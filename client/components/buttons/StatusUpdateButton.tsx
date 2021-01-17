@@ -12,14 +12,16 @@ interface Props {
 }
 
 const StatusUpdateButton: React.FC<Props> = ({book}) => {
-  const { dispatch } = useContext(AppContext);
+  const { dispatch, state } = useContext(AppContext);
   const [statusVisible, setStatusVisible ] = useState(false);
   const [selectedStatus, setSelectedStatus ] = useState({row: 0 } as IndexPath);
-
+  // console.log('here', state);
   const statusUpdateButton = () => {
     return (
       <Button 
-        onPress={() => setStatusVisible(true)}
+        onPress={() => 
+        {console.log('button');
+          setStatusVisible(true);}}
         size='small' 
         appearance='filled' 
         accessoryRight={(props) => {return (

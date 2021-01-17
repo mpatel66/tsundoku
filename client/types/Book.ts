@@ -44,7 +44,7 @@ export class Book {
     return new Book(data.id, isbn10, isbn13, authors, categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title, StatusType.NONE);
   }
 }
-  
+
 interface ImageLinks {
   thumbnail: string;
   smallThumbnail: string;

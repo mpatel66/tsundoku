@@ -5,18 +5,18 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import Books from './types/Book';
-import BookModal from './screens/BookModal';
 import AppContext from './components/context/context';
 import TabNavigator from './components/navigation/TabNavigator';
 import reducer from './components/context/reducer';
+import { createStackNavigator } from '@react-navigation/stack';
+import BookModal from './screens/BookModal';
+import { RootStackParamList } from './types/ScreenNavigatorType';
 
 const queryClient = new QueryClient({
-  // defaultOptions: {
-  //   queries: {
-  //     staleTime: 1000 * 60 * 5,
-  //   }
-  // }
 });
+
+
+const RootStack = createStackNavigator<RootStackParamList>();
 
 const initialState = {
   modalVisible: false,
@@ -32,8 +32,10 @@ const App: React.FC = () => {
       <ApplicationProvider {...eva} theme={eva.light}>
         <AppContext.Provider value={{state, dispatch}}>
           <NavigationContainer>
-            <TabNavigator />
-            {state.modalVisible && <BookModal />}
+            <RootStack.Navigator mode="modal">
+              <RootStack.Screen name="Tab" component={TabNavigator} />
+              <RootStack.Screen name="MyModal" component={BookModal} />
+            </RootStack.Navigator>
           </NavigationContainer>
         </AppContext.Provider>
       </ApplicationProvider>

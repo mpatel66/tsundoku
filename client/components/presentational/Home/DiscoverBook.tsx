@@ -10,7 +10,8 @@ interface Props {
 const DiscoverBook: React.FC<Props> = ({book}) => {
   return (
     <View style={styles.container}>
-      <TouchableCover book={book} imageSize='normal'/>
+      <TouchableCover book={book} 
+        imageSize='normal'/>
     </View>
   );
 };

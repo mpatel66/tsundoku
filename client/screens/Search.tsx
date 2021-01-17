@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
-import { Text, Input, SelectItem, Select, IndexPath } from '@ui-kitten/components';
-import { useQueryClient } from 'react-query';
-import screen from '../screenDimension';
+import { SafeAreaView, View } from 'react-native';
+import { Text, IndexPath } from '@ui-kitten/components';
+// import screen from '../screenDimension';
 import SearchList from '../components/container/Search/SearchList';
 import debouncedQuery from '../queries/debouncedQuery';
 import useDebounce from '../queries/debouncedSearch';
 import SearchBar from '../components/search/SearchBar';
 import { SearchInterface } from '../types/SearchTypes';
+import { useQueryClient } from 'react-query';
 
-const { width } = screen;
 
 const initialSearch: SearchInterface = {
   text: '',
@@ -55,8 +54,6 @@ const Search: React.FC = () => {
           <SearchList books={data}/>
         }
       </View>
-
-
     </SafeAreaView>
   );
 };

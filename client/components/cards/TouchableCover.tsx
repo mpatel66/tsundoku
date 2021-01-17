@@ -1,3 +1,5 @@
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useContext } from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Books from '../../types/Book';
@@ -11,13 +13,16 @@ interface Props {
   imageSize: string;
 }
 
+
 const TouchableCover: React.FC<Props> = ({book, imageSize}) => {
   const size = imageSize==='small' ? {height:120, width:100} : {height:200, width:150};
-  const {dispatch} = useContext(AppContext);
+  const navigation = useNavigation();
   return (
     <TouchableOpacity 
       activeOpacity={0.7} 
-      onPress={() => dispatch({type: ActionType.OPEN_MODAL, selectedBook: book})}
+      onPress={() => navigation.navigate('MyModal', {
+        book: book
+      })}
     >
       <Image
         style={[styles.image, size]}

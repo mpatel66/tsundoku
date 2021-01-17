@@ -1,14 +1,13 @@
 import { useContext } from 'react';
-import { useQuery } from 'react-query';
+import { QueryObserverResult, useQuery } from 'react-query';
 import AppContext from '../components/context/context';
 import { fetchByAuthor, fetchBySearch, fetchByTitle } from '../service/APIService';
 import Books from '../types/Book';
 import { QueryEnum } from '../types/SearchTypes';
 
 
-export default function debouncedQuery (queryString:string, queryType: QueryEnum) {
+export default function debouncedQuery (queryString:string, queryType: QueryEnum): QueryObserverResult<Books[], unknown> {
   const {state} = useContext(AppContext);
-  // console.log('type', queryType);
   const removeDuplicates = (data: Books[]) => {
     return data.map((item: Books) => {
       const index = state.addedBooks.findIndex(addedBook => addedBook.id === item.id);
@@ -18,7 +17,6 @@ export default function debouncedQuery (queryString:string, queryType: QueryEnum
   };
 
   if (queryType === QueryEnum.Author) {
-    console.log('author');
     return useQuery(['search','author', queryString], 
       () => fetchByAuthor(queryString), {
         enabled: !!queryString,
@@ -26,7 +24,6 @@ export default function debouncedQuery (queryString:string, queryType: QueryEnum
       });
   }
   else if (queryType === QueryEnum.Title) {
-    console.log('title');
     return useQuery(['search', 'title', queryString], 
       () => fetchByTitle(queryString), {
         enabled: !!queryString,
@@ -34,7 +31,6 @@ export default function debouncedQuery (queryString:string, queryType: QueryEnum
       });
   }
   else {
-    console.log('all');
     return useQuery(['search', queryString], 
       () => fetchBySearch(queryString), {
         enabled: !!queryString,

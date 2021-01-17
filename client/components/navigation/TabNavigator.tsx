@@ -9,18 +9,18 @@ import UserSettings from '../../screens/UserSettings';
 import IconGenerator from '../buttons/IconGenerator';
 
 const Tab = createBottomTabNavigator();
-
+//the route here is Tab
 const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptions>) => {
   return (
     <BottomNavigation
       selectedIndex={state.index}
       onSelect={index => navigation.navigate(state.routeNames[index])}
       style={styles.tab}
-      >
+    >
       <BottomNavigationTab 
         icon={(props) => 
           <IconGenerator props={props} iconName={'home'}/>}
-        />
+      />
       <BottomNavigationTab 
         icon={(props) => 
           <IconGenerator props={props} iconName={'book'}/>}/>
@@ -32,7 +32,7 @@ const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptio
           <IconGenerator props={props} iconName={'settings-2'}/>}/>
     </BottomNavigation>
   );
-}
+};
 
 const TabNavigator: React.FC = () => (
   <Tab.Navigator tabBar={props => <BottomTabBar {...props} />}>

@@ -4,9 +4,8 @@ import { View, StyleSheet } from 'react-native';
 import RatingButton from '../buttons/RatingButton';
 import moment from 'moment';
 import StatusUpdateButton from '../buttons/StatusUpdateButton';
-import Book, { ReadBook, isReadBook, isBook, isReadingBook } from '../../types/Book';
+import Book, { ReadBook, isReadBook, isBook } from '../../types/Book';
 import UpdateReadDate from '../buttons/UpdateReadDate';
-import Books from '../../types/Book';
 
 interface Props {
   book: ReadBook | Book;
