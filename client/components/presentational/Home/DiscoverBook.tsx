@@ -12,8 +12,8 @@ const DiscoverBook: React.FC<Props> = ({book}) => {
     <View style={styles.container}>
       <TouchableCover book={book} imageSize='normal'/>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

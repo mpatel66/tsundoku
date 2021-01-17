@@ -1,4 +1,4 @@
-import Book, { RatingType, ReadBook, ReadingBook } from "./Book";
+import Book, { RatingType, ReadBook, ReadingBook } from './Book';
 
 export enum ActionType {
   OPEN_MODAL, 

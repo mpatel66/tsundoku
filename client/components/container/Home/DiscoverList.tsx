@@ -27,7 +27,7 @@ const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
       numColumns={2}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}
-      onEndReached={books.length < 70 ? getNextPage: () =>{}}
+      onEndReached={books.length < 70 ? getNextPage : () => { return; }}
       onEndReachedThreshold={0.5}
     />
       }

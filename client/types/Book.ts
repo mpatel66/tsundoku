@@ -9,10 +9,8 @@ export class Book {
   pageCount!: number;
   title!: string;
   status!: StatusType;
-  // rating!: string;
-  // readDates: BookDates;
 
-  constructor(id: string, isbn10:string, isbn13: string, authors: string[], categories: string[], description: string, imageLinks: ImageLinks, pageCount: number, title:string, status: StatusType) {
+  constructor (id: string, isbn10:string, isbn13: string, authors: string[], categories: string[], description: string, imageLinks: ImageLinks, pageCount: number, title:string, status: StatusType) {
     this.id = id;
     this.isbn10 = isbn10;
     this.isbn13 = isbn13;
@@ -23,15 +21,14 @@ export class Book {
     this.pageCount = pageCount;
     this.title = title;
     this.status = status;
-    // this.rating = rating;
-    // this.readDates = readDates;
   }
 
-  static parseBook( data: any ): Book {
+  static parseBook ( data: any ): Book {
     const { volumeInfo } = data;
     const authors = volumeInfo.authors === undefined ? ['Anon.'] : volumeInfo.authors;
+    const categories = volumeInfo.categories === undefined ? ['None.'] : volumeInfo.categories;
     const  industryIdentifiers = volumeInfo.industryIdentifiers;
-    const readDates = {startDate: undefined, endDate: undefined}
+    // const readDates = {startDate: undefined, endDate: undefined};
     let isbn10: string;
     let isbn13: string;
 
@@ -44,9 +41,7 @@ export class Book {
       isbn13 = 'None';
     }
 
-
-
-    return new Book(data.id, isbn10, isbn13, authors, volumeInfo.categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title, StatusType.NONE)
+    return new Book(data.id, isbn10, isbn13, authors, categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title, StatusType.NONE);
   }
 }
   
@@ -79,15 +74,15 @@ export interface ReadBook extends ReadingBook {
   endDate: Date;
 }
 
-export function isBook(book: Books): book is Book {
+export function isBook (book: Books): book is Book {
   return (book as ReadingBook).startDate === undefined;
 }
 
-export function isReadingBook(book: Books): book is ReadingBook {
+export function isReadingBook (book: Books): book is ReadingBook {
   return (book as ReadingBook).startDate !== undefined; 
 }
 
-export function isReadBook(book: Book | ReadBook): book is ReadBook {
+export function isReadBook (book: Book | ReadBook): book is ReadBook {
   return (book as ReadBook).endDate !== undefined;
 }
 
