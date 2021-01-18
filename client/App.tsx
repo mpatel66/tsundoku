@@ -9,11 +9,11 @@ import AppContext from './components/context/context';
 import TabNavigator from './components/navigation/TabNavigator';
 import reducer from './components/context/reducer';
 import { createStackNavigator } from '@react-navigation/stack';
-import BookModal from './screens/BookModal';
 import { RootStackParamList } from './types/ScreenNavigatorType';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActionType } from './types/ReducerAction';
 import { Text, SafeAreaView } from 'react-native';
+import BookModal from './tab-screens/BookModal';
 
 
 const queryClient = new QueryClient({

@@ -2,10 +2,10 @@ import React from 'react';
 import { BottomTabBarOptions, BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {StyleSheet} from 'react-native';
 import { BottomNavigation,  BottomNavigationTab } from '@ui-kitten/components';
-import Home from '../../screens/Home';
-import MyBooks from '../../screens/MyBooks';
-import Search from '../../screens/Search';
 import IconGenerator from '../buttons/IconGenerator';
+import Home from '../../tab-screens/Home';
+import MyBooks from '../../tab-screens/MyBooks';
+import Search from '../../tab-screens/Search';
 
 const Tab = createBottomTabNavigator();
 

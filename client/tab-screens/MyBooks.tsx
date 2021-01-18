@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Tab, TabView } from '@ui-kitten/components';
 import ReadingList from '../components/container/MyBooks/ReadingList';
@@ -7,7 +7,7 @@ import AddedList from '../components/container/MyBooks/AddedList';
 import { StatusType } from '../types/Book';
 
 const MyBooks: React.FC  = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
     <SafeAreaView>
