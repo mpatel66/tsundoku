@@ -1,12 +1,7 @@
-import { ParamListBase, useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Books from '../../types/Book';
-import { ActionType } from '../../types/ReducerAction';
-import AppContext from '../context/context';
-
-
 
 interface Props {
   book: Books;

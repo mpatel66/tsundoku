@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
@@ -11,10 +11,13 @@ import reducer from './components/context/reducer';
 import { createStackNavigator } from '@react-navigation/stack';
 import BookModal from './screens/BookModal';
 import { RootStackParamList } from './types/ScreenNavigatorType';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ActionType } from './types/ReducerAction';
+import { Text, SafeAreaView } from 'react-native';
+
 
 const queryClient = new QueryClient({
 });
-
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -22,10 +25,34 @@ const initialState = {
   addedBooks: [] as Books[]
 };
 
-
-
 const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect( () => {
+    console.log('useffect app');
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('appState');
+        const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
+        console.log(parsedState); 
+        dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
+        setIsLoading(false);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  },[]);
+
+  if (isLoading) {
+    return (
+      <SafeAreaView>
+        <Text>Loading....</Text>
+      </SafeAreaView>
+    
+    );
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <IconRegistry icons={EvaIconsPack} />
@@ -45,6 +72,9 @@ const App: React.FC = () => {
       </ApplicationProvider>
     </QueryClientProvider>
   );
+  
+  
+  
 };
 
 export default App;

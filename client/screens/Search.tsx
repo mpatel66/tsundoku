@@ -46,7 +46,6 @@ const Search: React.FC = () => {
       {/* NOTHING FOUND COMPONENT */}
       { !(isLoading || isFetching) && (!data || !data.length || isError ) &&
         <Text>We could not find any books that match your search.</Text>}
-
       {/* SEARCH LIST COMPONENT */}
       <View>
         {isSuccess && data 

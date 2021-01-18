@@ -19,7 +19,6 @@ const ReadList: React.FC = () => {
         keyExtractor={item => item.id}
         renderItem={({item}) => <ReadBookItem book={item}/>}
         ItemSeparatorComponent={() => <Divider/>}
-        // contentContainerStyle={styles.flatList}
       />
     </Layout>
   );
@@ -33,8 +32,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding:10,
-  },
-  // flatList: {
-  //   // paddingBottom: 20,
-  // }
+  }
 });

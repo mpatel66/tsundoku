@@ -9,7 +9,6 @@ const categories = ['fiction', 'fantasy', 'fiction'];
 const Home: React.FC = ()  => {
   const queryClient = useQueryClient();
   const genreName = categories[0];
-  // const [currentItem, setCurrentItem] = useState(0);
 
   const {data, isSuccess, fetchNextPage }: InfiniteQueryObserverResult<any> = useInfiniteQuery(['categories', genreName], ({ pageParam = 0 }) => fetchByCategoryPaginated(pageParam, genreName), {
   });

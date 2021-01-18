@@ -14,7 +14,6 @@ interface Props {
 const {width, height} = screen;
 
 const ReadingBookItem: React.FC<Props> = ({book}) => {
-  // const days = book.startDate && Math.floor((Date.now() - book.startDate?.getTime())/(1000*60*60*24));
   return (
     <Layout style={styles.container} level='2'>
       <View style={styles.innerContainer}>

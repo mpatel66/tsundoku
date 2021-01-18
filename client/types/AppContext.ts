@@ -2,8 +2,6 @@ import Books from './Book';
 import { Action } from './ReducerAction';
 
 export interface AppContextInterface {
-  // modalVisible: boolean;
-  // selectedBook: Books;
   addedBooks: Books[];
 }
 

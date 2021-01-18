@@ -1,39 +1,61 @@
 import { AppContextInterface } from '../../types/AppContext';
 import { isBook, RatingType, StatusType } from '../../types/Book';
 import { Action, ActionType } from '../../types/ReducerAction';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
+async function addToStore (state: AppContextInterface) {
+  try {
+    const jsonValue = JSON.stringify(state);
+    // console.log(jsonValue);
+    await AsyncStorage.setItem('appState', jsonValue);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 export default function reducer (state:AppContextInterface, action:Action): AppContextInterface {
   switch (action.type) {
-  case ActionType.ADD_BOOK: {
-    action.addedBook.status = StatusType.ADDED;
+  case ActionType.LOAD_INITIAL_DATA: {
     return {
-      ...state,
-      addedBooks: [...state.addedBooks, action.addedBook]
+      ...action.state
     };
   }
-  case ActionType.REMOVE_BOOK:
-    return {
-      ...state,
+
+  case ActionType.ADD_BOOK: {
+    action.addedBook.status = StatusType.ADDED;
+    const updatedState = {
+      ...state, 
+      addedBooks: [...state.addedBooks, action.addedBook]
+    };
+    addToStore(updatedState);
+    return updatedState;
+  }
+  case ActionType.REMOVE_BOOK: {
+    const updatedState = {
+      ...state, 
       addedBooks: state.addedBooks.filter(book => book.id !== action.removeBook.id)
     };
-
+    addToStore(updatedState);
+    return updatedState;
+  }
   case ActionType.UPDATE_BOOK_READING: {
     const readingIndex = state.addedBooks.findIndex(book => book.id === action.updatedBook.id);
     const readingBooks = [...state.addedBooks];
     readingBooks[readingIndex] = {
       ...readingBooks[readingIndex], 
       status: StatusType.READING, 
-      startDate: new Date(),
+      startDate: new Date().toString(),
       rating: RatingType.NONE
     };
-    return {
+
+    const updatedState = {
       ...state, 
-      // selectedBook: readingBooks[readingIndex],
       addedBooks: [...readingBooks]
     };
+    addToStore(updatedState);
+
+    return updatedState;
   }
   case ActionType.UPDATE_BOOK_READ: {
     const readIndex = state.addedBooks.findIndex(book => book.id === action.updatedBook.id);
@@ -42,23 +64,26 @@ export default function reducer (state:AppContextInterface, action:Action): AppC
       readBooks[readIndex] = {
         ...readBooks[readIndex], 
         status: StatusType.READ, 
-        startDate: new Date(),
-        endDate: new Date(),
+        startDate: new Date().toString(),
+        endDate: new Date().toString(),
         rating: RatingType.NONE
       };
     } else {
       readBooks[readIndex] = {
         ...readBooks[readIndex], 
         status: StatusType.READ,
-        startDate: action.startDate ? action.startDate : new Date(),
-        endDate: action.endDate ? action.endDate : new Date()
+        startDate: (action.startDate ? action.startDate : new Date()).toString(),
+        endDate: (action.endDate ? action.endDate : new Date()).toString()
       };
     }
-    return {
+    console.log(action.startDate?.toString());
+    const updatedState = {
       ...state, 
-      // selectedBook: readBooks[readIndex],
       addedBooks: [...readBooks]
     };
+
+    addToStore(updatedState);
+    return updatedState;
   }
   case ActionType.UPDATE_RATING: {
     const ratingIndex = state.addedBooks.findIndex(book => book.id === action.updatedBook.id);
@@ -67,53 +92,14 @@ export default function reducer (state:AppContextInterface, action:Action): AppC
       ...ratingBooks[ratingIndex],
       rating: action.rating
     };
-    return {
+    const updatedState = {
       ...state,
       addedBooks: [...ratingBooks]
     };
+    addToStore(updatedState);
+    return updatedState;
   }
   default:
     return state;
   }
-  // if we get down here we're in serious trouble as I've covered all the action types.
-  // return assertUnreachable(state,action);
 }
-
-
-// case ActionType.OPEN_MODAL: {
-//   const findBook: Books|undefined = state.addedBooks.find(book => book.id === action.selectedBook.id);
-//   if (findBook) {
-//     if (isReadBook(findBook)) {
-//       const selectedBook: ReadBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate, endDate: findBook.endDate};
-//       return {
-//         ...state,
-//         modalVisible: true,
-//         selectedBook: selectedBook
-//       };
-//     }
-//     else if (isReadingBook(findBook)) {
-//       const selectedBook: ReadingBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate};
-//       return {
-//         ...state,
-//         modalVisible: true,
-//         selectedBook: selectedBook
-//       };
-//     }
-//     else if (isBook(findBook)) {
-//       const selectedBook: Book = {...action.selectedBook, status: findBook.status};
-//       return {
-//         ...state,
-//         modalVisible: true,
-//         selectedBook: selectedBook
-//       };
-//     }
-//   } 
-//   else {
-//     return {
-//       ...state,
-//       modalVisible: true,
-//       selectedBook: action.selectedBook
-//     };
-//   }
-//   break;
-// }

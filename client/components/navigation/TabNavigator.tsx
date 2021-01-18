@@ -9,7 +9,7 @@ import UserSettings from '../../screens/UserSettings';
 import IconGenerator from '../buttons/IconGenerator';
 
 const Tab = createBottomTabNavigator();
-//the route here is Tab
+
 const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptions>) => {
   return (
     <BottomNavigation

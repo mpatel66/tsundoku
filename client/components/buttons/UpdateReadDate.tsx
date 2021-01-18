@@ -13,8 +13,8 @@ interface Props {
 const UpdateReadDate: React.FC<Props> = ({book, size}) => {
   const {dispatch } = useContext(AppContext);
   const [range, setRange] = useState({
-    startDate: book.startDate,
-    endDate: isReadBook(book) ? book.endDate : null
+    startDate: new Date(book.startDate),
+    endDate: isReadBook(book) ? new Date(book.endDate) : null
   } as CalendarRange<Date>);
 
   function updateDates () {
@@ -34,7 +34,7 @@ const UpdateReadDate: React.FC<Props> = ({book, size}) => {
         updatedBook: book, 
         startDate: range.startDate
       });
-      book.startDate = range.startDate;
+      book.startDate = range.startDate.toString();
     }
   }
   

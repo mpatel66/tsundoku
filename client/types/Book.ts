@@ -1,3 +1,4 @@
+//TODO remove any unused fields.
 export class Book {
   id!: string;
   isbn10!: string;
@@ -28,7 +29,6 @@ export class Book {
     const authors = volumeInfo.authors === undefined ? ['Anon.'] : volumeInfo.authors;
     const categories = volumeInfo.categories === undefined ? ['None.'] : volumeInfo.categories;
     const  industryIdentifiers = volumeInfo.industryIdentifiers;
-    // const readDates = {startDate: undefined, endDate: undefined};
     let isbn10: string;
     let isbn13: string;
 
@@ -66,12 +66,12 @@ export enum RatingType {
 }
 
 export interface ReadingBook extends Book {
-  startDate: Date;
+  startDate: string;
   rating: RatingType;
 }
 
 export interface ReadBook extends ReadingBook {
-  endDate: Date;
+  endDate: string;
 }
 
 export function isBook (book: Books): book is Book {
