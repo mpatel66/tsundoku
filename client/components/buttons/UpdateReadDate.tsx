@@ -45,6 +45,7 @@ const UpdateReadDate: React.FC<Props> = ({book, size}) => {
   return (
     <RangeDatepicker
       style={styles.date}
+      status='primary'
       min={minDate}
       range={range}
       size={size}

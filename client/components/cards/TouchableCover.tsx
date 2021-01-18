@@ -20,7 +20,7 @@ const TouchableCover: React.FC<Props> = ({book, imageSize}) => {
       })}
     >
       <Image
-        style={[styles.image, size]}
+        style={[styles.image, size, {opacity: 1}]}
         source={
           {uri: book.volumeInfo.imageLinks.thumbnail}
         }
@@ -32,6 +32,7 @@ const TouchableCover: React.FC<Props> = ({book, imageSize}) => {
 const styles = StyleSheet.create({
   image: {
     resizeMode: 'contain',
+    opacity: 1,
   },
 });
 

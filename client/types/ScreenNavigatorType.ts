@@ -13,7 +13,6 @@ export type RootStackParamList = {
   };
 };
 
-
 export type TabParamList = {
   Home: undefined;
   MyBooks: undefined;

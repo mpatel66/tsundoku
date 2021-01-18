@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { Text, IndexPath } from '@ui-kitten/components';
+import { Text, IndexPath, Layout } from '@ui-kitten/components';
 // import screen from '../screenDimension';
 import SearchList from '../components/container/Search/SearchList';
 import debouncedQuery from '../queries/debouncedQuery';
@@ -32,7 +32,7 @@ const Search: React.FC = () => {
   }
 
   return (
-    <SafeAreaView>
+    <Layout style={{flex:1}}>
       <Text category='h3'>Search</Text>
       <View>
         <SearchBar 
@@ -53,7 +53,7 @@ const Search: React.FC = () => {
           <SearchList books={data}/>
         }
       </View>
-    </SafeAreaView>
+    </Layout>
   );
 };
 

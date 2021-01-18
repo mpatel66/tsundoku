@@ -30,13 +30,14 @@ const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptio
   );
 };
 
-const TabNavigator: React.FC = () => (
-  <Tab.Navigator tabBar={props => <BottomTabBar {...props} />}>
-    <Tab.Screen name='Home' component={Home}/>
-    <Tab.Screen name='MyBooks' component={MyBooks}/>
-    <Tab.Screen name='Search' component={Search}/>
-  </Tab.Navigator>
-);
+const TabNavigator: React.FC = () => {
+  return (
+    <Tab.Navigator tabBar={props => <BottomTabBar {...props} />}>
+      <Tab.Screen name='Home' component={Home}/>
+      <Tab.Screen name='MyBooks' component={MyBooks}/>
+      <Tab.Screen name='Search' component={Search}/>
+    </Tab.Navigator>
+  );};
 
 
 const styles = StyleSheet.create({

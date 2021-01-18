@@ -1,7 +1,7 @@
 import { Layout } from '@ui-kitten/components';
 import React from 'react';
 import { ReadingBook  } from '../../../types/Book';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Image, Dimensions } from 'react-native';
 import AuthorImage from '../../cards/AuthorImage';
 import RatingButton from '../../buttons/RatingButton';
 import UpdateReadDate from '../../buttons/UpdateReadDate';
@@ -11,7 +11,7 @@ interface Props {
   book: ReadingBook;
 }
 
-const {width, height} = screen;
+const {width} = screen;
 
 const ReadingBookItem: React.FC<Props> = ({book}) => {
   return (
@@ -36,16 +36,12 @@ export default ReadingBookItem;
 
 const styles = StyleSheet.create({
   container: {
-    // backgroundColor: 'pink',
     width: width - 40,
     margin: 10,
     padding: 10,
-    height: height - 20,
-    flex: 1,
   },
   innerContainer: {
-    // backgroundColor: 'red',
-    top: height/8
+    justifyContent: 'center',
   },
   text: {
     paddingLeft:5,
@@ -55,5 +51,12 @@ const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'center',
-  }
+  },
+  image: {
+    resizeMode: 'center',
+    width: '100%',
+    height: '70%',
+    opacity: 0.7,
+  },
+
 });

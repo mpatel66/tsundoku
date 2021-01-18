@@ -14,7 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActionType } from './types/ReducerAction';
 import { Text, SafeAreaView } from 'react-native';
 import BookModal from './tab-screens/BookModal';
-
+import { default as theme } from './theme.json';
 
 const queryClient = new QueryClient({
 });
@@ -56,11 +56,13 @@ const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
+      <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
         <AppContext.Provider value={{state, dispatch}}>
           <NavigationContainer>
-            <RootStack.Navigator mode="modal">
-              <RootStack.Screen name="Tsundoku" component={TabNavigator} />
+            <RootStack.Navigator mode="modal" >
+              <RootStack.Screen 
+                name="Tsundoku" 
+                component={TabNavigator}/>
               <RootStack.Screen 
                 name="MyModal" 
                 component={BookModal} 
@@ -72,9 +74,6 @@ const App: React.FC = () => {
       </ApplicationProvider>
     </QueryClientProvider>
   );
-  
-  
-  
 };
 
 export default App;
