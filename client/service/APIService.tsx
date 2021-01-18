@@ -1,12 +1,23 @@
-import Books, { Book } from '../types/Book';
+import Books, { StatusType } from '../types/Book';
 
 const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
-const fieldMask = 'id,volumeInfo(title,subtitle,authors,description,industryIdentifiers,pageCount,categories,imageLinks)';
+const fieldMask = 'id,volumeInfo(title,authors,description,pageCount,categories,imageLinks)';
 
-function filterDuplicates (array:any) {
+function filterDuplicates (array: Books[]) {
   return array
-    .reduce( (acc: any, book:any ) => {
-      if (!!book.volumeInfo.imageLinks && !acc.find((item:{id:string}) => item.id === book.id)) acc.push(Book.parseBook(book));
+    .reduce( (acc: Books[], book:Books ) => {
+      if (!!book.volumeInfo.imageLinks && !acc.find((item:{id:string}) => item.id === book.id)) {
+        if (book.volumeInfo.authors === undefined) {
+          book.volumeInfo.authors = ['Anon.'];
+        }
+        if ( book.volumeInfo.categories === undefined) {
+          book.volumeInfo.categories = ['None'];
+        }
+        acc.push(
+          {...book,
+            status: StatusType.NONE
+          });
+      }
       return acc;
     }, []);
 }
@@ -26,7 +37,7 @@ async function fetchFactory (search:string, results: number, page?:number, query
   }
 }
 
-export async function fetchByCategoryPaginated (pageParam:number, subject:string): Promise<any> {
+export async function fetchByCategoryPaginated (pageParam:number, subject:string) : Promise<Books[] | undefined> {
   try {
     return await fetchFactory(subject, 10, pageParam, 'subject', 'newest');
   } catch (e) {
@@ -58,16 +69,3 @@ export async function fetchByTitle (searchTerm: string): Promise<Books[] | undef
     console.log(e);
   }
 }
-
-
-
-// export async function fetchByCategory (subject: string) {
-//   const response = await fetch(`${BASE_URL}?orderBy=newest&langRestrict=en&fields=items(${fieldMask})&q=subject:"${subject}"&maxResults=10`);
-//   if (response.status < 400) {
-//     const data = await response.json();
-//     const books = data.items.map((item: any) => Book.parseBook(item));
-//     return books;
-//   } else {
-//     Promise.reject(response);
-//   }
-// }

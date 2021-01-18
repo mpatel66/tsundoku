@@ -1,5 +1,5 @@
 import { AppContextInterface } from '../../types/AppContext';
-import { isBook, RatingType, StatusType } from '../../types/Book';
+import Books, { isBook, RatingType, StatusType } from '../../types/Book';
 import { Action, ActionType } from '../../types/ReducerAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
@@ -15,11 +15,28 @@ async function addToStore (state: AppContextInterface) {
   }
 }
 
+async function deleteStore () {
+  try {
+    await AsyncStorage.removeItem('appState');
+  } catch (e) {
+    console.log(e);
+  }
+  console.log('Done.');
+}
+
+
 export default function reducer (state:AppContextInterface, action:Action): AppContextInterface {
   switch (action.type) {
   case ActionType.LOAD_INITIAL_DATA: {
     return {
       ...action.state
+    };
+  }
+
+  case ActionType.DELETE_DATA: {
+    deleteStore();
+    return {
+      addedBooks: [] as Books[]
     };
   }
 

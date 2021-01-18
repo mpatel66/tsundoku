@@ -20,7 +20,6 @@ const UpdateReadDate: React.FC<Props> = ({book, size}) => {
     endDate: isReadBook(book) ? moment(book.endDate).toDate() : null
   } as CalendarRange<Date>);
 
-  // console.log(moment(range.startDate).isValid());
 
   function updateDates () {
     // If there's an end date, dispatch as Book Read, else update the start date.
@@ -34,11 +33,9 @@ const UpdateReadDate: React.FC<Props> = ({book, size}) => {
 
     }
     else if (range.startDate) {
-      // console.log(range.startDate);
       dispatch({
         type: ActionType.UPDATE_BOOK_READING, 
         updatedBook: book, 
-        // startDate: moment(new Date(range.startDate).toISOString()).format('YYYY-MM-DD[T]HH:mm:ss'),
         startDate: moment(range.startDate), 
       });
       book.startDate = moment(range.startDate);

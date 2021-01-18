@@ -13,11 +13,11 @@ const BlurbCard: React.FC<Props> = ({book}) => {
     <ScrollView>
       <Card style={styles.blurbText}>
         <Text category='s1'>Pages</Text>
-        <Text>{book.pageCount}</Text>
+        <Text>{book.volumeInfo.pageCount}</Text>
         <Text category='s1'>Genres</Text>
-        <Text>{book.categories.join(', ')}</Text>
+        <Text>{book.volumeInfo.categories.join(', ')}</Text>
         <Text category='s1'>Description</Text>
-        <Text>{book.description}</Text>
+        <Text>{book.volumeInfo.description}</Text>
       </Card>
     </ScrollView>
   );

@@ -35,6 +35,7 @@ const App: React.FC = () => {
         const jsonValue = await AsyncStorage.getItem('appState');
         const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
         dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
+        // dispatch({type: ActionType.DELETE_DATA});
         setIsLoading(false);
       } catch (e) {
         console.log(e);
@@ -63,7 +64,7 @@ const App: React.FC = () => {
               <RootStack.Screen 
                 name="MyModal" 
                 component={BookModal} 
-                options={({ route }) => ({ title: route.params.book.title })}
+                options={({ route }) => ({ title: route.params.book.volumeInfo.title })}
               />
             </RootStack.Navigator>
           </NavigationContainer>

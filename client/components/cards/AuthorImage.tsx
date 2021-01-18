@@ -11,8 +11,8 @@ interface Props {
 const AuthorImage: React.FC<Props> = ( {book}) => {
   return (
     <View>
-      <Text category='h4'>{book.title}</Text>
-      <Text category='s1'>{book.authors.length > 1 ? book.authors.join(', ') : book.authors}</Text>
+      <Text category='h4'>{book.volumeInfo.title}</Text>
+      <Text category='s1'>{book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors}</Text>
       <Card style={styles.card}>
         <View style={styles.imageContainer}>
           <TouchableCover book={book} imageSize='normal'/>

@@ -22,7 +22,7 @@ const TouchableCover: React.FC<Props> = ({book, imageSize}) => {
       <Image
         style={[styles.image, size]}
         source={
-          {uri: book.imageLinks.thumbnail}
+          {uri: book.volumeInfo.imageLinks.thumbnail}
         }
       />
     </TouchableOpacity>

@@ -1,53 +1,22 @@
 //TODO remove any unused fields.
-export class Book {
-  id!: string;
-  isbn10!: string;
-  isbn13!: string;
-  authors!: string[];
-  categories!: string[];
-  description!: string;
-  imageLinks!: ImageLinks;
-  pageCount!: number;
-  title!: string;
-  status!: StatusType;
-
-  constructor (id: string, isbn10:string, isbn13: string, authors: string[], categories: string[], description: string, imageLinks: ImageLinks, pageCount: number, title:string, status: StatusType) {
-    this.id = id;
-    this.isbn10 = isbn10;
-    this.isbn13 = isbn13;
-    this.authors = authors;
-    this.categories = categories;
-    this.description = description;
-    this.imageLinks = imageLinks;
-    this.pageCount = pageCount;
-    this.title = title;
-    this.status = status;
-  }
-
-  static parseBook ( data: any ): Book {
-    const { volumeInfo } = data;
-    const authors = volumeInfo.authors === undefined ? ['Anon.'] : volumeInfo.authors;
-    const categories = volumeInfo.categories === undefined ? ['None.'] : volumeInfo.categories;
-    const  industryIdentifiers = volumeInfo.industryIdentifiers;
-    let isbn10: string;
-    let isbn13: string;
-
-    if (industryIdentifiers) {
-      isbn13 = industryIdentifiers[0] ? industryIdentifiers[0].identifier : 'None';
-      isbn10 = industryIdentifiers[1] ? industryIdentifiers[1].identifier : 'None';
-    }
-    else {
-      isbn10 = 'None';
-      isbn13 = 'None';
-    }
-
-    return new Book(data.id, isbn10, isbn13, authors, categories, volumeInfo.description, volumeInfo.imageLinks, volumeInfo.pageCount, volumeInfo.title, StatusType.NONE);
-  }
+export interface Book {
+  id: string;
+  status: StatusType;
+  volumeInfo: VolumeInfo;
 }
 
 interface ImageLinks {
   thumbnail: string;
   smallThumbnail: string;
+}
+
+interface VolumeInfo {
+  authors: string[];
+  categories: string[];
+  description: string;
+  imageLinks: ImageLinks;
+  pageCount: number;
+  title: string;
 }
 
 export enum StatusType {
@@ -90,3 +59,4 @@ export function isReadBook (book: Book | ReadBook): book is ReadBook {
 
 type Books = Book | ReadingBook | ReadBook;
 export default Books;
+

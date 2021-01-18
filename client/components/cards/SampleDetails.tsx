@@ -14,8 +14,8 @@ const  SampleDetails: React.FC<Props> = ({book}) => {
   return (
     <View style={styles.data}>
       <View>
-        <Text category='h6'>{book.title}</Text>
-        <Text category='s1'>{book.authors.length > 1 ? book.authors.join(', ') : book.authors}</Text>
+        <Text category='h6'>{book.volumeInfo.title}</Text>
+        <Text category='s1'>{book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors}</Text>
       </View>
 
       {isReadBook(book) && 
@@ -27,7 +27,7 @@ const  SampleDetails: React.FC<Props> = ({book}) => {
 
       {isBook(book) && 
       <View>
-        <Text numberOfLines={5} category='p1'>{book.description}</Text>
+        <Text numberOfLines={5} category='p1'>{book.volumeInfo.description}</Text>
         <StatusUpdateButton book={book}/>
       </View>
       }
