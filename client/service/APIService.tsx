@@ -22,7 +22,7 @@ function filterDuplicates (array: Books[]) {
     }, []);
 }
 
-async function fetchFactory (search:string, results: number, page?:number, queryType?:string, order?:string) {
+async function fetchFactory (search:string, results: number, removeDuplicates: boolean, page?:number, queryType?:string, order?:string, ) {
   const query = queryType ? `${queryType}:${search}` : search;
   const orderBy = !order ? 'relevance' : order;
   const pageParam = !page ? 0 : page;
@@ -30,7 +30,9 @@ async function fetchFactory (search:string, results: number, page?:number, query
     const response = await fetch(`${BASE_URL}?orderBy=${orderBy}&langRestrict=en&fields=items(${fieldMask})&q=${query}&startIndex=${pageParam}&maxResults=${results}`);
     if (response.status < 400) {
       const data = await response.json();
-      return data.items ? filterDuplicates(data.items) : [];
+      if (data.items && removeDuplicates) return filterDuplicates(data.items);
+      if (data.items && !removeDuplicates) return data.items;
+      else return [];
     } else Promise.reject(response);
   } catch (e) {
     console.log(e);
@@ -39,7 +41,7 @@ async function fetchFactory (search:string, results: number, page?:number, query
 
 export async function fetchByCategoryPaginated (pageParam:number, subject:string) : Promise<Books[] | undefined> {
   try {
-    return await fetchFactory(subject, 10, pageParam, 'subject', 'newest');
+    return await fetchFactory(subject, 10, false, pageParam, 'subject', 'newest');
   } catch (e) {
     console.log(e);
   }
@@ -47,7 +49,7 @@ export async function fetchByCategoryPaginated (pageParam:number, subject:string
 
 export async function fetchBySearch (searchTerm: string): Promise<Books[] | undefined> {
   try {
-    return await fetchFactory(searchTerm, 40);
+    return await fetchFactory(searchTerm, 40, true);
   } catch (e) {
     console.log(e);
   }
@@ -56,7 +58,7 @@ export async function fetchBySearch (searchTerm: string): Promise<Books[] | unde
 
 export async function fetchByAuthor (searchTerm: string) :Promise<Books[] | undefined> {
   try {
-    return await fetchFactory(searchTerm, 40, 0, 'inauthor');
+    return await fetchFactory(searchTerm, 40, true, 0, 'inauthor');
   } catch (e) {
     console.log(e);
   }
@@ -64,7 +66,7 @@ export async function fetchByAuthor (searchTerm: string) :Promise<Books[] | unde
 
 export async function fetchByTitle (searchTerm: string): Promise<Books[] | undefined> {
   try {
-    return await fetchFactory(searchTerm, 40, 0, 'intitle');
+    return await fetchFactory(searchTerm, 40, true, 0, 'intitle');
   } catch (e) {
     console.log(e);
   }

@@ -3,7 +3,6 @@ import { Layout, Text  } from '@ui-kitten/components';
 import { useQueryClient } from 'react-query';
 import categoryQuery from '../../../queries/categoryQuery';
 import DiscoverList from './DiscoverList';
-import { DrawerLayoutAndroid } from 'react-native-gesture-handler';
 
 interface Props {
   type: string;
