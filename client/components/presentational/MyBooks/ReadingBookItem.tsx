@@ -36,15 +36,15 @@ export default ReadingBookItem;
 
 const styles = StyleSheet.create({
   container: {
-    width: width - 40,
+    // width: width,
+    // backgroundColor: 'black',
     margin: 10,
     padding: 10,
+    alignItems: 'center',
   },
   innerContainer: {
     justifyContent: 'center',
-  },
-  text: {
-    paddingLeft:5,
+    alignItems: 'center',
   },
   actionContainer: {
     flexDirection: 'row',

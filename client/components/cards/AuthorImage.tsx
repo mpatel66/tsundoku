@@ -9,8 +9,7 @@ interface Props {
   book: Book;
 }
 
-
-const {height} =screen;
+const {height} = screen;
 
 const AuthorImage: React.FC<Props> = ( {book}) => {
   return (
@@ -41,6 +40,7 @@ const styles = StyleSheet.create({
   },
   card: {
     margin: 10,
+    width: 330,
   },
   shadow: {
     shadowColor: '#000',
