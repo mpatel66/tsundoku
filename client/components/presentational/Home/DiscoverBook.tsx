@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Book from '../../../types/Book';
+import Books from '../../../types/Book';
 import TouchableCover from '../../cards/TouchableCover';
 
 interface Props {
-  book: Book;
+  book: Books;
 }
 
 const DiscoverBook: React.FC<Props> = ({book}) => {

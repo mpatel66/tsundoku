@@ -1,5 +1,6 @@
 import { ParamListBase } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import Books from './Book';
 
 export interface ScreenNavigationProp {
   navigation: StackNavigationProp<ParamListBase>
@@ -7,8 +8,11 @@ export interface ScreenNavigationProp {
 
 export type RootStackParamList = {
   Tsundoku: undefined;
-  MyModal: undefined;
+  MyModal: {
+    book: Books
+  };
 };
+
 
 export type TabParamList = {
   Home: undefined;

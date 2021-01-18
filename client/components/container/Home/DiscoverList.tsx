@@ -1,17 +1,17 @@
 import React from 'react';
 import { FlatList, StyleSheet } from 'react-native';
-import Book from '../../../types/Book';
 import { Layout } from '@ui-kitten/components';
 import DiscoverBook from '../../presentational/Home/DiscoverBook';
+import Books from '../../../types/Book';
 
 
 interface Props {
-  books: Book[] | undefined;
+  books: Books[] | undefined;
   getNextPage(): unknown; //changed from any to unknown
 }
 
 const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
-  function renderBooks ({ item } : {item: Book}) {
+  function renderBooks ({ item } : {item: Books}) {
     return (
       <DiscoverBook book={item}/>
     );

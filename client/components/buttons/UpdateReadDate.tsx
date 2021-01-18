@@ -4,6 +4,8 @@ import { isReadBook, ReadBook, ReadingBook } from '../../types/Book';
 import { ActionType } from '../../types/ReducerAction';
 import AppContext from '../context/context';
 import { StyleSheet } from 'react-native';
+import moment from 'moment';
+moment.suppressDeprecationWarnings = true;
 
 interface Props {
   book: ReadingBook | ReadBook;
@@ -12,36 +14,41 @@ interface Props {
 
 const UpdateReadDate: React.FC<Props> = ({book, size}) => {
   const {dispatch } = useContext(AppContext);
+  const minDate = new Date(2000,0,1);
   const [range, setRange] = useState({
-    startDate: new Date(book.startDate),
-    endDate: isReadBook(book) ? new Date(book.endDate) : null
+    startDate: moment(book.startDate).toDate(),
+    endDate: isReadBook(book) ? moment(book.endDate).toDate() : null
   } as CalendarRange<Date>);
+
+  // console.log(moment(range.startDate).isValid());
 
   function updateDates () {
     // If there's an end date, dispatch as Book Read, else update the start date.
-    if (range.endDate) {
+    if (range.endDate && range.startDate) {
       dispatch({
         type: ActionType.UPDATE_BOOK_READ, 
         updatedBook: book, 
-        startDate: range.startDate, 
-        endDate: range.endDate
+        startDate: moment(range.startDate), 
+        endDate: moment(range.endDate), 
       });
 
     }
     else if (range.startDate) {
+      // console.log(range.startDate);
       dispatch({
         type: ActionType.UPDATE_BOOK_READING, 
         updatedBook: book, 
-        startDate: range.startDate
+        // startDate: moment(new Date(range.startDate).toISOString()).format('YYYY-MM-DD[T]HH:mm:ss'),
+        startDate: moment(range.startDate), 
       });
-      book.startDate = range.startDate.toString();
+      book.startDate = moment(range.startDate);
     }
   }
   
   return (
     <RangeDatepicker
       style={styles.date}
-      min={new Date(2000,0,1)}
+      min={minDate}
       range={range}
       size={size}
       onSelect={nextRange => setRange(nextRange)}

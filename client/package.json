@@ -16,6 +16,7 @@
     "@react-navigation/stack": "^5.12.8",
     "@ui-kitten/components": "^5.0.0",
     "@ui-kitten/eva-icons": "^5.0.0",
+    "@ui-kitten/moment": "^5.0.0",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "moment": "^2.29.1",

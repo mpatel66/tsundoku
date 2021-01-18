@@ -34,7 +34,6 @@ const App: React.FC = () => {
       try {
         const jsonValue = await AsyncStorage.getItem('appState');
         const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
-        console.log(parsedState); 
         dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
         setIsLoading(false);
       } catch (e) {

@@ -13,7 +13,7 @@ interface Props {
   route: RouteProp<{ params: { book: Books} }, 'params'>;
 }
 const BookModal: React.FC<Props> = ({ navigation, route }) => {
-  const { book }= route.params;
+  const { book } = route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <AuthorImage book={book}/>

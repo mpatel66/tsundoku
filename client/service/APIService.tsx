@@ -26,8 +26,7 @@ async function fetchFactory (search:string, results: number, page?:number, query
   }
 }
 
-
-export async function fetchByCategoryPaginated (pageParam:number, subject:string): Promise<Books[] | undefined> {
+export async function fetchByCategoryPaginated (pageParam:number, subject:string): Promise<any> {
   try {
     return await fetchFactory(subject, 10, pageParam, 'subject', 'newest');
   } catch (e) {

@@ -66,12 +66,14 @@ export enum RatingType {
 }
 
 export interface ReadingBook extends Book {
-  startDate: string;
+  // startDate: string;
+  startDate: moment.Moment;
   rating: RatingType;
 }
 
 export interface ReadBook extends ReadingBook {
-  endDate: string;
+  // endDate: string;
+  endDate: moment.Moment;
 }
 
 export function isBook (book: Books): book is Book {

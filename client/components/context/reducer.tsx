@@ -2,6 +2,7 @@ import { AppContextInterface } from '../../types/AppContext';
 import { isBook, RatingType, StatusType } from '../../types/Book';
 import { Action, ActionType } from '../../types/ReducerAction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 async function addToStore (state: AppContextInterface) {
@@ -45,7 +46,8 @@ export default function reducer (state:AppContextInterface, action:Action): AppC
     readingBooks[readingIndex] = {
       ...readingBooks[readingIndex], 
       status: StatusType.READING, 
-      startDate: new Date().toString(),
+      startDate: moment(),
+      // startDate: new Date().toString(),
       rating: RatingType.NONE
     };
 
@@ -64,19 +66,23 @@ export default function reducer (state:AppContextInterface, action:Action): AppC
       readBooks[readIndex] = {
         ...readBooks[readIndex], 
         status: StatusType.READ, 
-        startDate: new Date().toString(),
-        endDate: new Date().toString(),
+        // startDate: new Date().toString(),
+        // endDate: new Date().toString(),
+        startDate: moment(),
+        endDate: moment(),
         rating: RatingType.NONE
       };
     } else {
       readBooks[readIndex] = {
         ...readBooks[readIndex], 
         status: StatusType.READ,
-        startDate: (action.startDate ? action.startDate : new Date()).toString(),
-        endDate: (action.endDate ? action.endDate : new Date()).toString()
+        // startDate: (action.startDate ? action.startDate : new Date()).toString(),
+        // endDate: (action.endDate ? action.endDate : new Date()).toString()
+        startDate: action.startDate ? action.startDate : moment(),
+        endDate: action.endDate ? action.endDate : moment()
       };
     }
-    console.log(action.startDate?.toString());
+    // console.log(action.startDate?.toString());
     const updatedState = {
       ...state, 
       addedBooks: [...readBooks]
