@@ -19,10 +19,10 @@ const queryClient = new QueryClient({
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const initialState = {
-  modalVisible: false,
-  selectedBook: {} as Books,
   addedBooks: [] as Books[]
 };
+
+
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -33,8 +33,12 @@ const App: React.FC = () => {
         <AppContext.Provider value={{state, dispatch}}>
           <NavigationContainer>
             <RootStack.Navigator mode="modal">
-              <RootStack.Screen name="Tab" component={TabNavigator} />
-              <RootStack.Screen name="MyModal" component={BookModal} />
+              <RootStack.Screen name="Tsundoku" component={TabNavigator} />
+              <RootStack.Screen 
+                name="MyModal" 
+                component={BookModal} 
+                options={({ route }) => ({ title: route.params.book.title })}
+              />
             </RootStack.Navigator>
           </NavigationContainer>
         </AppContext.Provider>

@@ -1,17 +1,17 @@
-import { Book } from "../types/Book";
+import Books, { Book } from '../types/Book';
 
-const BASE_URL: string = 'https://www.googleapis.com/books/v1/volumes';
-const fieldMask: string = 'id,volumeInfo(title,subtitle,authors,description,industryIdentifiers,pageCount,categories,imageLinks)';
+const BASE_URL = 'https://www.googleapis.com/books/v1/volumes';
+const fieldMask = 'id,volumeInfo(title,subtitle,authors,description,industryIdentifiers,pageCount,categories,imageLinks)';
 
 function filterDuplicates (array:any) {
   return array
     .reduce( (acc: any, book:any ) => {
-      if (!!book.volumeInfo.imageLinks && !acc.find((item:{id:string}) => item.id === book.id)) acc.push(Book.parseBook(book))
+      if (!!book.volumeInfo.imageLinks && !acc.find((item:{id:string}) => item.id === book.id)) acc.push(Book.parseBook(book));
       return acc;
-  }, [])
+    }, []);
 }
 
-async function fetchFactory(search:string, results: number, page?:number, queryType?:string, order?:string) {
+async function fetchFactory (search:string, results: number, page?:number, queryType?:string, order?:string) {
   const query = queryType ? `${queryType}:${search}` : search;
   const orderBy = !order ? 'relevance' : order;
   const pageParam = !page ? 0 : page;
@@ -27,36 +27,36 @@ async function fetchFactory(search:string, results: number, page?:number, queryT
 }
 
 
-export async function fetchByCategoryPaginated(pageParam:number, subject:string) {
+export async function fetchByCategoryPaginated (pageParam:number, subject:string): Promise<Books[] | undefined> {
   try {
-    return await fetchFactory(subject, 10, pageParam, 'subject', 'newest')
-  } catch(e) {
-    console.log(e)
+    return await fetchFactory(subject, 10, pageParam, 'subject', 'newest');
+  } catch (e) {
+    console.log(e);
   }
 }
 
-export async function fetchBySearch(searchTerm: string) {
+export async function fetchBySearch (searchTerm: string): Promise<Books[] | undefined> {
   try {
     return await fetchFactory(searchTerm, 40);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 
 
-export async function fetchByAuthor(searchTerm: string) {
+export async function fetchByAuthor (searchTerm: string) :Promise<Books[] | undefined> {
   try {
     return await fetchFactory(searchTerm, 40, 0, 'inauthor');
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 
-export async function fetchByTitle(searchTerm: string) {
+export async function fetchByTitle (searchTerm: string): Promise<Books[] | undefined> {
   try {
     return await fetchFactory(searchTerm, 40, 0, 'intitle');
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 }
 

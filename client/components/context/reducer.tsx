@@ -1,57 +1,12 @@
 import { AppContextInterface } from '../../types/AppContext';
-import Books, { Book, isBook, isReadBook, isReadingBook, RatingType, ReadBook, ReadingBook, StatusType } from '../../types/Book';
+import { isBook, RatingType, StatusType } from '../../types/Book';
 import { Action, ActionType } from '../../types/ReducerAction';
 
-// function assertUnreachable (x: AppContextInterface, action:Action): never {
-//   throw new Error('Didn\'t expect to get here');
-// }
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 
-export default function reducer (state:AppContextInterface, action:Action) {
+export default function reducer (state:AppContextInterface, action:Action): AppContextInterface {
   switch (action.type) {
-  case ActionType.OPEN_MODAL: {
-    const findBook: Books|undefined = state.addedBooks.find(book => book.id === action.selectedBook.id);
-    if (findBook) {
-      if (isReadBook(findBook)) {
-        const selectedBook: ReadBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate, endDate: findBook.endDate};
-        return {
-          ...state,
-          modalVisible: true,
-          selectedBook: selectedBook
-        };
-      }
-      else if (isReadingBook(findBook)) {
-        const selectedBook: ReadingBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate};
-        return {
-          ...state,
-          modalVisible: true,
-          selectedBook: selectedBook
-        };
-      }
-      else if (isBook(findBook)) {
-        const selectedBook: Book = {...action.selectedBook, status: findBook.status};
-        return {
-          ...state,
-          modalVisible: true,
-          selectedBook: selectedBook
-        };
-      }
-    } 
-    else {
-      return {
-        ...state,
-        modalVisible: true,
-        selectedBook: action.selectedBook
-      };
-    }
-    break;
-  }
-  case ActionType.CLOSE_MODAL: {
-    return {
-      ...state,
-      modalVisible: false,
-    };
-  }
   case ActionType.ADD_BOOK: {
     action.addedBook.status = StatusType.ADDED;
     return {
@@ -76,7 +31,7 @@ export default function reducer (state:AppContextInterface, action:Action) {
     };
     return {
       ...state, 
-      selectedBook: readingBooks[readingIndex],
+      // selectedBook: readingBooks[readingIndex],
       addedBooks: [...readingBooks]
     };
   }
@@ -101,7 +56,7 @@ export default function reducer (state:AppContextInterface, action:Action) {
     }
     return {
       ...state, 
-      selectedBook: readBooks[readIndex],
+      // selectedBook: readBooks[readIndex],
       addedBooks: [...readBooks]
     };
   }
@@ -120,5 +75,45 @@ export default function reducer (state:AppContextInterface, action:Action) {
   default:
     return state;
   }
+  // if we get down here we're in serious trouble as I've covered all the action types.
   // return assertUnreachable(state,action);
 }
+
+
+// case ActionType.OPEN_MODAL: {
+//   const findBook: Books|undefined = state.addedBooks.find(book => book.id === action.selectedBook.id);
+//   if (findBook) {
+//     if (isReadBook(findBook)) {
+//       const selectedBook: ReadBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate, endDate: findBook.endDate};
+//       return {
+//         ...state,
+//         modalVisible: true,
+//         selectedBook: selectedBook
+//       };
+//     }
+//     else if (isReadingBook(findBook)) {
+//       const selectedBook: ReadingBook = {...action.selectedBook, status: findBook.status, rating: findBook.rating, startDate: findBook.startDate};
+//       return {
+//         ...state,
+//         modalVisible: true,
+//         selectedBook: selectedBook
+//       };
+//     }
+//     else if (isBook(findBook)) {
+//       const selectedBook: Book = {...action.selectedBook, status: findBook.status};
+//       return {
+//         ...state,
+//         modalVisible: true,
+//         selectedBook: selectedBook
+//       };
+//     }
+//   } 
+//   else {
+//     return {
+//       ...state,
+//       modalVisible: true,
+//       selectedBook: action.selectedBook
+//     };
+//   }
+//   break;
+// }

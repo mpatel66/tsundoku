@@ -6,7 +6,7 @@ export interface ScreenNavigationProp {
 }
 
 export type RootStackParamList = {
-  Tab: undefined;
+  Tsundoku: undefined;
   MyModal: undefined;
 };
 

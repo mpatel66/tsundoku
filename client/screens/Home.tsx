@@ -2,9 +2,8 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { InfiniteQueryObserverResult, useInfiniteQuery, useQueryClient } from 'react-query';
 import DiscoverList from '../components/container/Home/DiscoverList';
-import generateNextPage from '../queries/generateNextPage';
 import { fetchByCategoryPaginated } from '../service/APIService';
-const categories = ['science', 'fantasy', 'fiction'];
+const categories = ['fiction', 'fantasy', 'fiction'];
 
 
 const Home: React.FC = ()  => {
@@ -16,11 +15,13 @@ const Home: React.FC = ()  => {
   });
 
   function getNextPage () {
-    generateNextPage(data, fetchNextPage);
+    let nextPage: number;
+    if (data?.pageParams !== undefined) {
+      if (data.pageParams.length === 1) nextPage = 10; // indexing on google starts from 0, so next page starts at 10.
+      else nextPage = 10 + (data.pageParams[data.pageParams.length-1] as number);
+      fetchNextPage({pageParam: nextPage});
+    }
   }
-
-  
-
   return (
     <SafeAreaView>
       {isSuccess && data && 

@@ -17,7 +17,7 @@ const BookModal: React.FC<Props> = ({ navigation, route }) => {
   const { book }= route.params;
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()}>Go Back</Button>
+      {/* <Button onPress={() => navigation.goBack()}>Go Back</Button> */}
       <AuthorImage book={book}/>
       <View style={styles.buttons}>
         <StatusUpdateButton book={book} />
