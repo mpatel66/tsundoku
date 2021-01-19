@@ -8,15 +8,14 @@ import { QueryEnum } from '../types/SearchTypes';
 
 export default function debouncedQuery (queryString:string, queryType: QueryEnum): QueryObserverResult<Books[], unknown> {
   const {state} = useContext(AppContext);
-
   const removeDuplicates = (data: Books[]) => {
     return data.map((item: Books) => {
       const index = state.addedBooks.findIndex(addedBook => addedBook.id === item.id);
       if (index > - 1) return item = state.addedBooks[index];
       return item; 
     });
-  };
-
+  };  
+  
   if (queryType === QueryEnum.Author) {
     return useQuery(['search','author', queryString], 
       () => fetchByAuthor(queryString), {

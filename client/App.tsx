@@ -36,7 +36,7 @@ const App: React.FC = () => {
         const jsonValue = await AsyncStorage.getItem('appState');
         const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
         dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
-        console.log(parsedState);
+        // console.log(parsedState);
         // dispatch({type: ActionType.DELETE_DATA});
         setIsLoading(false);
       } catch (e) {
@@ -62,7 +62,12 @@ const App: React.FC = () => {
         <AppContext.Provider value={{state, dispatch}}>
           <NavigationContainer>
             <RootStack.Navigator mode="modal" >
-              <RootStack.Screen 
+              <RootStack.Screen
+                options={{
+                  headerStyle: { backgroundColor:'#223773' },
+                  headerTintColor: '#fffbf8', 
+                  headerTitleStyle: { fontFamily: 'Optima-Bold'}
+                }} 
                 name="Tsundoku" 
                 component={TabNavigator}/>
               <RootStack.Screen 
