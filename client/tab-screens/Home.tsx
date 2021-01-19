@@ -1,14 +1,7 @@
 import { Layout, Tab, TabView } from '@ui-kitten/components';
-import React, { useContext, useState } from 'react';
-import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
-import {  InfiniteData, useInfiniteQuery, useQueryClient } from 'react-query';
-import DiscoverList from '../components/container/Home/DiscoverList';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import FictionList from '../components/container/Home/FictionList';
-import ReadList from '../components/container/MyBooks/ReadList';
-import AppContext from '../components/context/context';
-import categoryQuery from '../queries/categoryQuery';
-import { fetchByCategoryPaginated } from '../service/APIService';
-import Books from '../types/Book';
 
 
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from '@ui-kitten/components';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import RatingButton from '../buttons/RatingButton';
 import moment from 'moment';
 import StatusUpdateButton from '../buttons/StatusUpdateButton';
 import Book, { ReadBook, isReadBook, isBook } from '../../types/Book';
 import UpdateReadDate from '../buttons/UpdateReadDate';
+import Fonts from '../../styles/fonts';
 
 interface Props {
   book: ReadBook | Book;
@@ -14,20 +14,20 @@ const  SampleDetails: React.FC<Props> = ({book}) => {
   return (
     <View style={styles.data}>
       <View>
-        <Text category='h6'>{book.volumeInfo.title}</Text>
-        <Text category='s1'>{book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors}</Text>
+        <Text style={Fonts.subHeadingMed}>{book.volumeInfo.title}</Text>
+        <Text style={Fonts.subHeadingSmall}>{book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors}</Text>
       </View>
 
       {isReadBook(book) && 
     <View>
-      <Text category='p1'>Last Read: {moment(book.endDate).format('Do MMM YYYY')}</Text>
+      <Text style={Fonts.paragraph}>Last Read: {moment(book.endDate).format('Do MMM YYYY')}</Text>
       <UpdateReadDate book={book} size='small' />
       <RatingButton book={book} size='small'/>
     </View>}
 
       {isBook(book) && 
       <View>
-        <Text numberOfLines={5} category='p1'>{book.volumeInfo.description}</Text>
+        <Text numberOfLines={6} style={Fonts.paragraphSmall}>{book.volumeInfo.description}</Text>
         <StatusUpdateButton book={book}/>
       </View>
       }

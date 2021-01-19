@@ -1,9 +1,10 @@
-import { Card, Text } from '@ui-kitten/components';
+import { Card } from '@ui-kitten/components';
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, Text } from 'react-native';
 import Book from '../../types/Book';
 import TouchableCover from './TouchableCover';
 import screen from '../../screenDimension';
+import Fonts from '../../styles/fonts';
 
 interface Props {
   book: Book;
@@ -17,8 +18,8 @@ const AuthorImage: React.FC<Props> = ( {book, showBackground}) => {
     <View style={styles.shadow}>
       <Card style={styles.card} appearance='filled' >
         <View style={styles.author}>
-          <Text category='h4'>{book.volumeInfo.title}</Text>
-          <Text category='h6' style={{paddingTop:10,}}>
+          <Text style={Fonts.heading1}> {book.volumeInfo.title}</Text>
+          <Text style={[Fonts.heading2,{paddingTop:10,}]}>
             {book.volumeInfo.authors.length > 1 ? book.volumeInfo.authors.join(', ') : book.volumeInfo.authors}
           </Text>
         </View>
@@ -57,9 +58,8 @@ const styles = StyleSheet.create({
   },
   author: {
     padding: 10,
-    height: height/8,
     alignItems: 'center',
-    
+    // backgroundColor:'grey'
   },
   image: {
     resizeMode: 'cover', 

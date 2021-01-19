@@ -18,7 +18,10 @@ const BookModal: React.FC<Props> = ({ route }) => {
   const { book } = route.params;
   return (
     <View style={styles.container}>
-      <Image style={[StyleSheet.absoluteFill, styles.image]} source={require('../assets/trianglesBackground.png')}/>
+      <Image 
+        style={[StyleSheet.absoluteFill, styles.image]} 
+        defaultSource={require('../assets/trianglesBackground.png')}
+        source={require('../assets/trianglesBackground.png')}/>
       <AuthorImage book={book} showBackground={false} />
       <View style={styles.buttons}>
         <StatusUpdateButton book={book} />

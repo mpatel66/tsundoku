@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-import { Layout, Text  } from '@ui-kitten/components';
-
+import { Image, StyleSheet, Text } from 'react-native';
+import { Layout } from '@ui-kitten/components';
+import Fonts from '../../styles/fonts';
 
 interface Props {
   message: string;
@@ -11,7 +11,7 @@ const ErrorMessage: React.FC<Props> = ({message}) => {
   return (
     <Layout style={[styles.container, styles.shadow]} level='3'>
       <Image style={ styles.image} source={require('../../assets/logo.png')}/>
-      <Text style={styles.message} category='h6'>{message}</Text>
+      <Text style={Fonts.heading2}>{message}</Text>
     </Layout>
   );
 };

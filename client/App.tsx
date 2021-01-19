@@ -14,6 +14,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActionType } from './types/ReducerAction';
 import BookModal from './tab-screens/BookModal';
 import { default as theme } from './theme.json';
+import { useFonts, CedarvilleCursive_400Regular } from '@expo-google-fonts/cedarville-cursive';
+import AppLoading from 'expo-app-loading';
+import { 
+  Raleway_300Light,
+  Raleway_400Regular,
+  Raleway_500Medium,
+  Raleway_600SemiBold} from '@expo-google-fonts/raleway';
+
+
 
 const queryClient = new QueryClient({
 });
@@ -26,17 +35,22 @@ const initialState = {
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [fontsLoaded] = useFonts({
+    CedarvilleCursive_400Regular,
+    Raleway_300Light,
+    Raleway_500Medium,
+    Raleway_400Regular,
+    Raleway_600SemiBold,
+  });
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect( () => {
-    console.log('useffect app');
     const getData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem('appState');
         const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
         dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
-        // console.log(parsedState);
-        // dispatch({type: ActionType.DELETE_DATA});
         setIsLoading(false);
+        // dispatch({type: ActionType.DELETE_DATA});
       } catch (e) {
         console.log(e);
       }
@@ -44,38 +58,47 @@ const App: React.FC = () => {
     getData();
   },[]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
-        <AppContext.Provider value={{state, dispatch}}>
-          <NavigationContainer>
-            <RootStack.Navigator mode="modal" >
-              <RootStack.Screen
-                options={{
-                  headerStyle: { backgroundColor:'#223773' },
-                  headerTintColor: '#fffbf8', 
-                  headerTitleStyle: { fontFamily: 'Optima-Bold'}
-                }} 
-                name="Tsundoku" 
-                component={TabNavigator}/>
-              <RootStack.Screen 
-                name="MyModal" 
-                component={BookModal} 
-                options={
-                  ({ route }) => ({
-                    title: route.params.book.volumeInfo.title, 
+  if (!fontsLoaded || isLoading) {
+    console.log('loading.....');
+    return <AppLoading />;
+  } else {
+    console.log('loaded');
+    return (
+      <QueryClientProvider client={queryClient}>
+        <IconRegistry icons={EvaIconsPack} />
+        <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
+          <AppContext.Provider value={{state, dispatch}}>
+            <NavigationContainer>
+              <RootStack.Navigator mode="modal" >
+                <RootStack.Screen
+                  options={{
                     headerStyle: { backgroundColor:'#223773' },
-                    headerTintColor: '#fffbf8',
-                  })
-                }
-              />
-            </RootStack.Navigator>
-          </NavigationContainer>
-        </AppContext.Provider>
-      </ApplicationProvider>
-    </QueryClientProvider>
-  );
+                    headerTintColor: '#fffbf8', 
+                    headerTitleStyle: { fontFamily: 'CedarvilleCursive_400Regular', fontSize:30}
+                  }} 
+                  name="Tsundoku" 
+                  component={TabNavigator}/>
+                <RootStack.Screen 
+                  name="MyModal" 
+                  component={BookModal} 
+                  options={
+                    ({ route }) => ({
+                      title: route.params.book.volumeInfo.title, 
+                      headerStyle: { backgroundColor:'#223773' },
+                      headerTintColor: '#fffbf8',
+                      headerTitleStyle: { fontFamily: 'CedarvilleCursive_400Regular', fontSize:25},
+                      headerBackTitleVisible: false,
+                    })
+                  }
+                />
+              </RootStack.Navigator>
+            </NavigationContainer>
+          </AppContext.Provider>
+        </ApplicationProvider>
+      </QueryClientProvider>
+    );
+
+  }
 };
 
 export default App;
