@@ -53,7 +53,7 @@ const StatusUpdateButton: React.FC<Props> = ({book}) => {
     }
     setStatusVisible(false);
   }
-
+  //book.status === StatusType.NONE
   return (
     <OverflowMenu
       anchor={statusUpdateButton}
@@ -63,8 +63,8 @@ const StatusUpdateButton: React.FC<Props> = ({book}) => {
       onBackdropPress={() => setStatusVisible(false)}>
       <MenuItem title='Add' disabled={book.status !== StatusType.NONE}/>
       <MenuItem title='Remove' disabled={book.status === StatusType.NONE}/>
-      <MenuItem title={'Currently ' + StatusType.READING} disabled={book.status === StatusType.NONE}/>
-      <MenuItem title={StatusType.READ} disabled={book.status === StatusType.NONE}/> 
+      <MenuItem title={'Currently ' + StatusType.READING} disabled={false}/>
+      <MenuItem title={StatusType.READ} disabled={false}/> 
     </OverflowMenu>
   );
 };

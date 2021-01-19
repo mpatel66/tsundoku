@@ -8,7 +8,6 @@ import moment from 'moment';
 async function addToStore (state: AppContextInterface) {
   try {
     const jsonValue = JSON.stringify(state);
-    // console.log(jsonValue);
     await AsyncStorage.setItem('appState', jsonValue);
   } catch (e) {
     console.log(e);
@@ -60,46 +59,58 @@ export default function reducer (state:AppContextInterface, action:Action): AppC
   case ActionType.UPDATE_BOOK_READING: {
     const readingIndex = state.addedBooks.findIndex(book => book.id === action.updatedBook.id);
     const readingBooks = [...state.addedBooks];
-    readingBooks[readingIndex] = {
-      ...readingBooks[readingIndex], 
-      status: StatusType.READING, 
-      startDate: moment(),
-      // startDate: new Date().toString(),
-      rating: RatingType.NONE
-    };
-
+    if (readingIndex > -1) {
+      readingBooks[readingIndex] = {
+        ...readingBooks[readingIndex], 
+        status: StatusType.READING, 
+        startDate: moment(),
+        rating: RatingType.NONE
+      };
+    } else {
+      readingBooks.push({
+        ...action.updatedBook,
+        status: StatusType.READING, 
+        startDate: moment(),
+        rating: RatingType.NONE
+      });
+    }
     const updatedState = {
       ...state, 
       addedBooks: [...readingBooks]
     };
     addToStore(updatedState);
-
     return updatedState;
   }
   case ActionType.UPDATE_BOOK_READ: {
     const readIndex = state.addedBooks.findIndex(book => book.id === action.updatedBook.id);
     const readBooks = [...state.addedBooks];
-    if (isBook(action.updatedBook)) {
-      readBooks[readIndex] = {
-        ...readBooks[readIndex], 
+    if (readIndex > -1) {
+      // ie. going from Add Status -> Read
+      if (isBook(action.updatedBook)) {
+        readBooks[readIndex] = {
+          ...readBooks[readIndex], 
+          status: StatusType.READ, 
+          startDate: moment(),
+          endDate: moment(),
+          rating: RatingType.NONE
+        };
+      } else {
+        readBooks[readIndex] = {
+          ...readBooks[readIndex], 
+          status: StatusType.READ,
+          startDate: action.startDate ? action.startDate : moment(),
+          endDate: action.endDate ? action.endDate : moment()
+        };
+      }
+    } else {
+      readBooks.push({
+        ...action.updatedBook,
         status: StatusType.READ, 
-        // startDate: new Date().toString(),
-        // endDate: new Date().toString(),
         startDate: moment(),
         endDate: moment(),
         rating: RatingType.NONE
-      };
-    } else {
-      readBooks[readIndex] = {
-        ...readBooks[readIndex], 
-        status: StatusType.READ,
-        // startDate: (action.startDate ? action.startDate : new Date()).toString(),
-        // endDate: (action.endDate ? action.endDate : new Date()).toString()
-        startDate: action.startDate ? action.startDate : moment(),
-        endDate: action.endDate ? action.endDate : moment()
-      };
+      });
     }
-    // console.log(action.startDate?.toString());
     const updatedState = {
       ...state, 
       addedBooks: [...readBooks]
