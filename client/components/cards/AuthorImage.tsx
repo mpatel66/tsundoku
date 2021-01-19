@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, View, Image, Text } from 'react-native';
 import Book from '../../types/Book';
 import TouchableCover from './TouchableCover';
-import screen from '../../screenDimension';
 import Fonts from '../../styles/fonts';
 
 interface Props {
@@ -11,8 +10,7 @@ interface Props {
   showBackground: boolean;
 }
 
-const {height} = screen;
-
+// Displays author, title and cover image.
 const AuthorImage: React.FC<Props> = ( {book, showBackground}) => {
   return (
     <View style={styles.shadow}>
@@ -25,7 +23,10 @@ const AuthorImage: React.FC<Props> = ( {book, showBackground}) => {
         </View>
         <View style={styles.imageContainer}>
           {showBackground && 
-          <Image style={[StyleSheet.absoluteFill, styles.image]} source={require('../../assets/arrowBackground.png')}/>}
+          <Image 
+            style={[StyleSheet.absoluteFill, styles.image]} 
+            defaultSource={require('../../assets/backgroundSquare.png')}
+            source={require('../../assets/backgroundSquare.png')}/>}
           <TouchableCover book={book} imageSize='normal'/>
         </View>
       </Card>
@@ -37,9 +38,7 @@ export default AuthorImage;
 const styles = StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
-    paddingTop: 10,
     width: '100%',
-    
   },
   card: {
     margin: 10,
@@ -59,12 +58,12 @@ const styles = StyleSheet.create({
   author: {
     padding: 10,
     alignItems: 'center',
-    // backgroundColor:'grey'
   },
   image: {
     resizeMode: 'cover', 
     width: '100%', 
     height: 200, 
-    opacity: 0.5,
+    opacity: 0.7,
+    backgroundColor: 'red',
   }
 });

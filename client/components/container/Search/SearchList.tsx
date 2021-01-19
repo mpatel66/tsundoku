@@ -8,7 +8,7 @@ import AddedBookItem from '../../presentational/MyBooks/AddedBookItem';
 interface Props {
   books: Books[];
 }
-
+// renders a list of search results from user input.
 const SearchList: React.FC<Props> = ({books}) => {
 
   const renderSearch: React.FC<{item:Books}> = ({item}) => (<AddedBookItem book={item}/>);

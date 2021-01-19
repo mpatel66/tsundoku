@@ -7,9 +7,10 @@ import Books from '../../../types/Book';
 
 interface Props {
   books: Books[] | undefined;
-  getNextPage(): unknown; //changed from any to unknown
+  getNextPage(): unknown;
 }
 
+// Renders a list of books on the Home Page.
 const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
   function renderBooks ({ item } : {item: Books}) {
     return (
@@ -22,8 +23,8 @@ const DiscoverList: React.FC<Props> = ({books, getNextPage}) => {
       {books && 
     <FlatList
       data={books}
-      keyExtractor={item => item.id}
-      renderItem={renderBooks}
+      keyExtractor={(item) => item.id}
+      renderItem={(item) => renderBooks(item)}
       numColumns={2}
       showsVerticalScrollIndicator={false}
       contentContainerStyle={styles.container}

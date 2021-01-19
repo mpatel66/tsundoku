@@ -6,14 +6,11 @@ import Books, { isReadBook, isReadingBook,  } from '../types/Book';
 import AuthorImage from '../components/cards/AuthorImage';
 import RatingButton from '../components/buttons/RatingButton';
 import BlurbCard from '../components/cards/BlurbCard';
-import screen from '../screenDimension';
 
 interface Props {
-  // navigation: StackNavigationProp<ParamListBase>
   route: RouteProp<{ params: { book: Books} }, 'params'>;
 }
 
-const {width} = screen;
 const BookModal: React.FC<Props> = ({ route }) => {
   const { book } = route.params;
   return (
@@ -48,7 +45,6 @@ const styles = StyleSheet.create({
   image: {
     resizeMode: 'repeat', 
     width: '100%', 
-    // height: '100%', 
     opacity: 0.8,
   }
 });

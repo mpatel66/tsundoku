@@ -1,4 +1,3 @@
-//TODO remove any unused fields.
 export interface Book {
   id: string;
   status: StatusType;
@@ -35,13 +34,11 @@ export enum RatingType {
 }
 
 export interface ReadingBook extends Book {
-  // startDate: string;
   startDate: moment.Moment;
   rating: RatingType;
 }
 
 export interface ReadBook extends ReadingBook {
-  // endDate: string;
   endDate: moment.Moment;
 }
 

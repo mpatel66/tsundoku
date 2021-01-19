@@ -8,7 +8,7 @@ interface Props {
   imageSize: string;
 }
 
-
+// Cover image that navigates to the Book Modal.
 const TouchableCover: React.FC<Props> = ({book, imageSize}) => {
   const size = imageSize==='small' ? {height:120, width:100} : {height:200, width:150};
   const navigation = useNavigation();

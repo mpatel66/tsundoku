@@ -5,6 +5,7 @@ import AppContext from '../../context/context';
 import Book, { StatusType } from '../../../types/Book';
 import AddedBookItem from '../../presentational/MyBooks/AddedBookItem';
 
+// Renders a list of books that you want to read.
 const AddedList: React.FC = () => {
   const {state} = useContext(AppContext);
   const added = state.addedBooks.filter(item => (item.status === StatusType.ADDED)) as Book[];

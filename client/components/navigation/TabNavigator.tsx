@@ -9,6 +9,8 @@ import Search from '../../tab-screens/Search';
 
 const Tab = createBottomTabNavigator();
 
+// renders the bottom tab navigation
+
 const BottomTabBar = ({ navigation, state }: BottomTabBarProps<BottomTabBarOptions>) => {
   return (
     <BottomNavigation

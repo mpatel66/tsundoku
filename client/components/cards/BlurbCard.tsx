@@ -10,7 +10,7 @@ interface Props {
 }
 
 const {width} = screen;
-
+// Displays further details of the book, such as blurb, status.
 const BlurbCard: React.FC<Props> = ({book}) => {
   return (
     <ScrollView>

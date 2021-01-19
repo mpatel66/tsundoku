@@ -19,7 +19,7 @@ const MyBooks: React.FC  = () => {
         <Tab title={StatusType.READING}>
           <ReadingList/>
         </Tab>
-        <Tab title={StatusType.ADDED}>
+        <Tab title='Want To Read'>
           <AddedList/>
         </Tab>
         <Tab title={StatusType.READ}>

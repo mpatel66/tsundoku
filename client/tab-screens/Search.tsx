@@ -17,7 +17,7 @@ const initialSearch: SearchInterface = {
 const Search: React.FC = () => {
   const queryClient = useQueryClient();
   const [search, setSearch] = useState(initialSearch);
-  const debouncedSearch = useDebounce(search.text);
+  const debouncedSearch = useDebounce(search.text,400);
   const { data, isSuccess } = debouncedQuery(debouncedSearch.trim(),search.filter.row);
 
   function searchTextChange (userInput: string) {
@@ -29,7 +29,6 @@ const Search: React.FC = () => {
       return {...prev, filter: (index as IndexPath)};
     });
   }
-  console.log(data, 'loading');
 
   return (
     <Layout style={{flex:1}}>
@@ -46,9 +45,3 @@ const Search: React.FC = () => {
 };
 
 export default Search;
-
-// const styles = StyleSheet.create({
-//   error: {
-//     alignItems: 'center',
-//   }
-// });

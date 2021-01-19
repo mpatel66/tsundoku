@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Text  } from '@ui-kitten/components';
+import { Layout } from '@ui-kitten/components';
 import { useQueryClient } from 'react-query';
 import categoryQuery from '../../../queries/categoryQuery';
 import DiscoverList from './DiscoverList';
@@ -9,6 +9,7 @@ interface Props {
   type: string;
 }
 
+// Fetches books from Google Books API. The query is either for fiction or non-fiction books.
 const FictionList: React.FC<Props> = ({type}) => {
   const queryClient = useQueryClient();
   const {data, isSuccess, isError, fetchNextPage } = categoryQuery(type);

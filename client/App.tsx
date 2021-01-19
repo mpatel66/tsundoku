@@ -20,8 +20,9 @@ import {
   Raleway_300Light,
   Raleway_400Regular,
   Raleway_500Medium,
-  Raleway_600SemiBold} from '@expo-google-fonts/raleway';
-
+  Raleway_600SemiBold
+} from '@expo-google-fonts/raleway';
+import { LogBox } from 'react-native';
 
 
 const queryClient = new QueryClient({
@@ -33,6 +34,7 @@ const initialState = {
   addedBooks: [] as Books[]
 };
 
+LogBox.ignoreAllLogs(true);
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fontsLoaded] = useFonts({
@@ -60,9 +62,9 @@ const App: React.FC = () => {
 
   if (!fontsLoaded || isLoading) {
     console.log('loading.....');
+    // continue displaying the splash screen if true.
     return <AppLoading />;
   } else {
-    console.log('loaded');
     return (
       <QueryClientProvider client={queryClient}>
         <IconRegistry icons={EvaIconsPack} />

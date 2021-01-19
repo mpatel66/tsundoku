@@ -79,12 +79,6 @@
   "color-basic-300": "#FDE7E8",
   "color-basic-400": "#FBDADF",
   "color-basic-500": "#F7CED9",
-  // "color-basic-600": "#F2BDD0",
   "color-basic-600": "#D08AAA",
-  // "color-basic-700": "#D08AAA",
-  // "color-basic-800": "#AE5F8B",
-  // "color-basic-900": "#8C3C70",
-  // "color-basic-1000": "#742460",
-  // "color-basic-1100": "#742460",
   "text-basic-color": "#061440"
 }

@@ -10,6 +10,7 @@ import Fonts from '../../styles/fonts';
 interface Props {
   book: ReadBook | Book;
 }
+// Shows a smaller cover image, author, title, and a character limited blurb.
 const  SampleDetails: React.FC<Props> = ({book}) => {
   return (
     <View style={styles.data}>

@@ -19,7 +19,6 @@ const SearchBar: React.FC<Props> = ({searchTextChange, updateQueryType, search})
         : search.filter.row === 1 ? 'Title'
           : 'Author';
 
-
   return (
     <ScrollView 
       contentContainerStyle={styles.container}
@@ -51,7 +50,6 @@ const SearchBar: React.FC<Props> = ({searchTextChange, updateQueryType, search})
 
 const styles = StyleSheet.create({
   search: {
-    // backgroundColor: 'pink',
     width: (width/3) * 2 - 20,
     marginRight: 5,
     marginLeft: 3,

@@ -53,7 +53,6 @@ const StatusUpdateButton: React.FC<Props> = ({book}) => {
     }
     setStatusVisible(false);
   }
-  //book.status === StatusType.NONE
   return (
     <OverflowMenu
       anchor={statusUpdateButton}

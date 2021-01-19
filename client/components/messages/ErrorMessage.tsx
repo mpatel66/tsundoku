@@ -7,6 +7,7 @@ interface Props {
   message: string;
 }
 
+// renders an error message to the user.
 const ErrorMessage: React.FC<Props> = ({message}) => {
   return (
     <Layout style={[styles.container, styles.shadow]} level='3'>

@@ -13,7 +13,7 @@ async function addToStore (state: AppContextInterface) {
     console.log(e);
   }
 }
-
+// deleteStore --> really only for development.
 async function deleteStore () {
   try {
     await AsyncStorage.removeItem('appState');
