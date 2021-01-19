@@ -3,6 +3,7 @@ import { Layout, Text  } from '@ui-kitten/components';
 import { useQueryClient } from 'react-query';
 import categoryQuery from '../../../queries/categoryQuery';
 import DiscoverList from './DiscoverList';
+import ErrorMessage from '../../messages/ErrorMessage';
 
 interface Props {
   type: string;
@@ -10,7 +11,7 @@ interface Props {
 
 const FictionList: React.FC<Props> = ({type}) => {
   const queryClient = useQueryClient();
-  const {data, isSuccess, fetchNextPage } = categoryQuery(type);
+  const {data, isSuccess, isError, fetchNextPage } = categoryQuery(type);
 
   function getNextPage () {
     let nextPage: number;
@@ -28,7 +29,7 @@ const FictionList: React.FC<Props> = ({type}) => {
         books={data.pages[0]} 
         getNextPage={getNextPage}
       />}
-      {!isSuccess && <Text>It didnot work</Text>}
+      {(isError) && <ErrorMessage message='Uh Oh! Something went wrong....'/>}
     </Layout>
   );
 };

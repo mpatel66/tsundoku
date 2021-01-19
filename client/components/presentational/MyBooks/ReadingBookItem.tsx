@@ -1,17 +1,15 @@
 import { Layout } from '@ui-kitten/components';
 import React from 'react';
 import { ReadingBook  } from '../../../types/Book';
-import { StyleSheet, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import AuthorImage from '../../cards/AuthorImage';
 import RatingButton from '../../buttons/RatingButton';
 import UpdateReadDate from '../../buttons/UpdateReadDate';
-import screen from '../../../screenDimension';
 
 interface Props {
   book: ReadingBook;
 }
 
-const {width} = screen;
 
 const ReadingBookItem: React.FC<Props> = ({book}) => {
   return (

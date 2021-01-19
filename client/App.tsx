@@ -12,10 +12,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParamList } from './types/ScreenNavigatorType';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActionType } from './types/ReducerAction';
-import { Text, SafeAreaView } from 'react-native';
 import BookModal from './tab-screens/BookModal';
 import { default as theme } from './theme.json';
-import { parse } from 'react-native-svg';
 
 const queryClient = new QueryClient({
 });
@@ -46,15 +44,6 @@ const App: React.FC = () => {
     getData();
   },[]);
 
-  if (isLoading) {
-    return (
-      <SafeAreaView>
-        <Text>Loading....</Text>
-      </SafeAreaView>
-    
-    );
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <IconRegistry icons={EvaIconsPack} />
@@ -73,7 +62,13 @@ const App: React.FC = () => {
               <RootStack.Screen 
                 name="MyModal" 
                 component={BookModal} 
-                options={({ route }) => ({ title: route.params.book.volumeInfo.title })}
+                options={
+                  ({ route }) => ({
+                    title: route.params.book.volumeInfo.title, 
+                    headerStyle: { backgroundColor:'#223773' },
+                    headerTintColor: '#fffbf8',
+                  })
+                }
               />
             </RootStack.Navigator>
           </NavigationContainer>

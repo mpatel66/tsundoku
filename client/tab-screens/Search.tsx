@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Text, IndexPath, Layout } from '@ui-kitten/components';
+import { View } from 'react-native';
+import { IndexPath, Layout } from '@ui-kitten/components';
 import SearchList from '../components/container/Search/SearchList';
 import debouncedQuery from '../queries/debouncedQuery';
 import useDebounce from '../queries/debouncedSearch';
 import SearchBar from '../components/search/SearchBar';
 import { SearchInterface } from '../types/SearchTypes';
 import { useQueryClient } from 'react-query';
-import ErrorMessage from '../components/messages/ErrorMessage';
-import Loading from '../components/messages/Loading';
 
 
 const initialSearch: SearchInterface = {

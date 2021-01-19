@@ -13,31 +13,7 @@ import Books from '../types/Book';
 
 
 const Home: React.FC = ()  => {
-
-  const {state} = useContext(AppContext);
-  // const genreName = categories[0];
   const [selectedIndex, setSelectedIndex] = useState(0);
-
-
-  
-  
-  // useInfiniteQuery(['categories', categories[selectedIndex]], ({ pageParam = 0 }) => fetchByCategoryPaginated(pageParam, categories[selectedIndex]), {
-  //   select: (data) => {
-  //     if (data !== undefined && data.pages !== undefined) {
-  //       const flattened = data.pages.flat().map((item) => {
-  //         const findBook = item ? state.addedBooks.findIndex(book => book.id === item.id) : -1;
-  //         if (findBook > -1) {
-  //           return state.addedBooks[findBook];
-  //         } else {
-  //           return item;
-  //         }
-  //       });
-  //       return {pageParams: data.pageParams, pages: [flattened]} as InfiniteData<Books[] | undefined>;
-  //     }
-  //     else return data;
-  //   }
-  // });
-
 
   return (
     <SafeAreaView>
