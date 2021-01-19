@@ -7,11 +7,12 @@ import screen from '../../screenDimension';
 
 interface Props {
   book: Book;
+  showBackground: boolean;
 }
 
 const {height} = screen;
 
-const AuthorImage: React.FC<Props> = ( {book}) => {
+const AuthorImage: React.FC<Props> = ( {book, showBackground}) => {
   return (
     <View style={styles.shadow}>
       <Card style={styles.card} appearance='filled' >
@@ -22,7 +23,8 @@ const AuthorImage: React.FC<Props> = ( {book}) => {
           </Text>
         </View>
         <View style={styles.imageContainer}>
-          <Image style={[StyleSheet.absoluteFill, styles.image]} source={require('../../assets/arrowBackground.png')}/>
+          {showBackground && 
+          <Image style={[StyleSheet.absoluteFill, styles.image]} source={require('../../assets/arrowBackground.png')}/>}
           <TouchableCover book={book} imageSize='normal'/>
         </View>
       </Card>

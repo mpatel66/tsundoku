@@ -15,6 +15,7 @@ import { ActionType } from './types/ReducerAction';
 import { Text, SafeAreaView } from 'react-native';
 import BookModal from './tab-screens/BookModal';
 import { default as theme } from './theme.json';
+import { parse } from 'react-native-svg';
 
 const queryClient = new QueryClient({
 });
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         const jsonValue = await AsyncStorage.getItem('appState');
         const parsedState = jsonValue ? JSON.parse(jsonValue) : initialState;
         dispatch({type: ActionType.LOAD_INITIAL_DATA, state: parsedState});
+        console.log(parsedState);
         // dispatch({type: ActionType.DELETE_DATA});
         setIsLoading(false);
       } catch (e) {

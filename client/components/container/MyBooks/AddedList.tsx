@@ -26,8 +26,6 @@ export default AddedList;
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
     padding:10,
   },
   flatList: {

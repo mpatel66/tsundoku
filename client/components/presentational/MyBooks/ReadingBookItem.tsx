@@ -17,7 +17,7 @@ const ReadingBookItem: React.FC<Props> = ({book}) => {
   return (
     <Layout style={styles.container} level='2'>
       <View style={styles.innerContainer}>
-        <AuthorImage book={book} />
+        <AuthorImage book={book} showBackground={true}/>
         <View style={styles.actionContainer}>
           <View>
             <UpdateReadDate book={book} size='large'/>

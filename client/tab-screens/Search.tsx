@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Text, IndexPath, Layout } from '@ui-kitten/components';
 // import screen from '../screenDimension';
 import SearchList from '../components/container/Search/SearchList';
@@ -8,6 +8,7 @@ import useDebounce from '../queries/debouncedSearch';
 import SearchBar from '../components/search/SearchBar';
 import { SearchInterface } from '../types/SearchTypes';
 import { useQueryClient } from 'react-query';
+import ErrorMessage from '../components/messages/ErrorMessage';
 
 
 const initialSearch: SearchInterface = {
@@ -45,7 +46,10 @@ const Search: React.FC = () => {
       {(isLoading || isFetching) && <Text>Loading....</Text>}
       {/* NOTHING FOUND COMPONENT */}
       { !(isLoading || isFetching) && (!data || !data.length || isError ) &&
-        <Text>We could not find any books that match your search.</Text>}
+        <View style={styles.error}>
+          <ErrorMessage message='We could not find any books that match your search.' />
+        </View>
+      }
       {/* SEARCH LIST COMPONENT */}
       <View>
         {isSuccess && data 
@@ -58,3 +62,9 @@ const Search: React.FC = () => {
 };
 
 export default Search;
+
+const styles = StyleSheet.create({
+  error: {
+    alignItems: 'center',
+  }
+});

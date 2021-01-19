@@ -19,7 +19,7 @@ const BookModal: React.FC<Props> = ({ route }) => {
   return (
     <View style={styles.container}>
       <Image style={[StyleSheet.absoluteFill, styles.image]} source={require('../assets/trianglesBackground.png')}/>
-      <AuthorImage book={book}/>
+      <AuthorImage book={book} showBackground={false} />
       <View style={styles.buttons}>
         <StatusUpdateButton book={book} />
         { (isReadBook(book) || isReadingBook(book)) && 
