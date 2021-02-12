@@ -11,7 +11,7 @@ As an avid book reader, I'm frustrated by the lack of a sleek, modern app where 
 Users can browse the latest in fiction and non-fiction, select a specific book to view, and add it to their *Want To Read* list. 
 
 
-<img src="./readMeAssets/AddBooks.gif" width="40%"/>
+<img src="./readMeAssets/AddBooks.gif" width="30%"/>
 
 
 ### View books added to your lists
@@ -24,7 +24,7 @@ Users can:
 - view books they've read in the past, and add a rating
 
 
-<img src="./readMeAssets/ViewBooks.gif" width="40%"/>
+<img src="./readMeAssets/ViewBooks.gif" width="30%"/>
 
 
 ### Search for books
@@ -32,7 +32,7 @@ Users can:
 Users can search for books by author, title, or both!
 
 
-<img src="./readMeAssets/Search.gif" width="40%"/>
+<img src="./readMeAssets/Search.gif" width="30%"/>
 
 
 ## Getting Started
