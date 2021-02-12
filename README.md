@@ -11,7 +11,7 @@ As an avid book reader, I'm frustrated by the lack of a sleek, modern app where 
 Users can browse the latest in fiction and non-fiction, select a specific book to view, and add it to their *Want To Read* list. 
 
 
-<img src="./readMeAssets/ViewAndAdd.gif" width="40%"/>
+<img src="./readMeAssets/AddBooks.gif" width="40%"/>
 
 
 ### View books added to your lists
