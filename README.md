@@ -87,7 +87,6 @@ A few of my bugs and setbacks came from one particular library, and I could have
 ### Coding at 8pm is a bad idea
 
 - I think this one is self-explantory :smile:
-
-
-
-![border](/Users/meera/Documents/Codeworks/Projects/Solo Project/tsundoku/client/assets/border.png)
+<p align="center">
+<img src="./readMeAssets/border.png" width="75%" />
+</p>
