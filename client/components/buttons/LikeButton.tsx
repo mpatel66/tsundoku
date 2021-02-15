@@ -7,7 +7,7 @@ import IconGenerator from './IconGenerator';
 const LikeButton: React.FC = () => {
   return (
     <Button 
-      onPress={()=> {console.log('liked');}} 
+      onPress={() => {return;}} 
       size= 'small' appearance='outline' 
       style={styles.button}
       accessoryRight={(props) => {

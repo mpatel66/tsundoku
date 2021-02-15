@@ -15,7 +15,7 @@ const StatusUpdateButton: React.FC<Props> = ({book}) => {
   const { dispatch } = useContext(AppContext);
   const [statusVisible, setStatusVisible ] = useState(false);
   const [selectedStatus, setSelectedStatus ] = useState({row: 0 } as IndexPath);
-  // console.log('here', state);
+
   const statusUpdateButton = () => {
     return (
       <Button 

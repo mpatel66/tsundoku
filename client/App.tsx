@@ -61,7 +61,6 @@ const App: React.FC = () => {
   },[]);
 
   if (!fontsLoaded || isLoading) {
-    console.log('loading.....');
     // continue displaying the splash screen if true.
     return <AppLoading />;
   } else {
