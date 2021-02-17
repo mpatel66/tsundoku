@@ -31,12 +31,6 @@ const MyBooks: React.FC  = () => {
 };
 
 const styles = StyleSheet.create({
-  tabContainer: {
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding:10,
-  },
   tab: {
     top: 10,
   }

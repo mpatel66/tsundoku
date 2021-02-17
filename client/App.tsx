@@ -60,6 +60,7 @@ const App: React.FC = () => {
     getData();
   },[]);
 
+
   if (!fontsLoaded || isLoading) {
     // continue displaying the splash screen if true.
     return <AppLoading />;
@@ -75,7 +76,11 @@ const App: React.FC = () => {
                   options={{
                     headerStyle: { backgroundColor:'#223773' },
                     headerTintColor: '#fffbf8', 
-                    headerTitleStyle: { fontFamily: 'CedarvilleCursive_400Regular', fontSize:30}
+                    headerTitleStyle: { 
+                      fontFamily: 'CedarvilleCursive_400Regular',
+                      fontSize:30,
+                      alignSelf:'center'
+                    }
                   }} 
                   name="Tsundoku" 
                   component={TabNavigator}/>

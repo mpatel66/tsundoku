@@ -27,7 +27,7 @@ export default AddedList;
 const styles = StyleSheet.create({
   container: {
     height: '100%',
-    padding:10,
+    paddingTop:10,
   },
   flatList: {
     paddingBottom:120,

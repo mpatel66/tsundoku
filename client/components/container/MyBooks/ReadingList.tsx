@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
     height: '100%',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding:10,
-
+    paddingTop:10,
   },
   flatList: {
     paddingBottom: 120,
