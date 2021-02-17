@@ -1,5 +1,5 @@
 # Tsundoku
-Tsundoku is an app for searching and saving the books you'd like to read or have read. The app was built over five days as a Codeworks solo project.
+Tsundoku is an app for searching and saving the books you'd like to read or have read. The app was built at Codeworks as a solo project.
 
 As an avid book reader, I'm frustrated by the lack of a sleek, modern app where readers can keep track of their books. The current leading app hasn't been redesigned for a very long time (at least since 2010 when I first started using it). After doing a little research, I found that other readers were also experiencing pain points, and so I decided to try my hand at making my own book tracking app that put the UX and design first.
 
@@ -87,7 +87,6 @@ A few of my bugs and setbacks came from one particular library, and I could have
 ### Coding at 8pm is a bad idea
 
 - I think this one is self-explantory :smile:
-
-
-
-![border](/Users/meera/Documents/Codeworks/Projects/Solo Project/tsundoku/client/assets/border.png)
+<p align="center">
+<img src="./readMeAssets/border.png" width="75%" />
+</p>
