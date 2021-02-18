@@ -31,7 +31,8 @@
         "xhdpi": "./assets/splash-screens/XHDPI_Splash.png",
         "xxhdpi": "./assets/splash-screens/XXHDPI_Splash.png",
         "xxxhdpi": "./assets/splash-screens/XXXHDPI_Splash.png",
-        "resizeMode": "cover"
+        "resizeMode": "cover",
+        "backgroundColor": "#fffbf8"
       }
     },
     "web": {
