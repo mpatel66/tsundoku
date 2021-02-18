@@ -49,6 +49,7 @@ const UpdateReadDate: React.FC<Props> = ({book, size}) => {
       min={minDate}
       range={range}
       size={size}
+      placement={'bottom'}
       onSelect={nextRange => setRange(nextRange)}
       onBlur={() => updateDates()}
     />
