@@ -20,6 +20,8 @@
       }
     },
     "android": {
+      "versionCode": 1,
+      "package": "com.patel2984.meera.uk.tsundoku", 
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-logo.png",
         "backgroundColor": "#fffbf8"

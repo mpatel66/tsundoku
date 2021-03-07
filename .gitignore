@@ -1,5 +1,5 @@
-node_modules/**/*
-.expo/*
+client/node_modules/**/*
+client/.expo/*
 npm-debug.*
 *.jks
 *.p8
@@ -10,4 +10,6 @@ npm-debug.*
 web-build/
 
 # macOS
+client/.eslintrc
+client/.eslintignore
 .DS_Store
